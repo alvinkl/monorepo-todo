@@ -1,6 +1,6 @@
 {
   "name": "mono-todo-mainapp",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,5 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-mobx": "^1.0.3"
   },
-  "gitHead": "acf280669ac9c5e022b6b8feba9fa9b303bf1a75"
+  "gitHead": "e72b6a74e904c35891cd478afb524c3dc362db15"
 }

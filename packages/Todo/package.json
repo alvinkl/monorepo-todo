@@ -1,6 +1,6 @@
 {
   "name": "mono-todo-module-todo",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -29,5 +29,5 @@
     "access": "public"
   },
   "private": false,
-  "gitHead": "acf280669ac9c5e022b6b8feba9fa9b303bf1a75"
+  "gitHead": "e72b6a74e904c35891cd478afb524c3dc362db15"
 }
