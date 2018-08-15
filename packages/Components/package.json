@@ -1,6 +1,6 @@
 {
-  "name": "@todo/components",
-  "version": "1.0.6",
+  "name": "@todo/components2",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,5 +25,5 @@
     "access": "public"
   },
   "private": false,
-  "gitHead": "272eb6ba3914111fe91553145fa98c6647ce85ce"
+  "gitHead": "bc35b40bc908c2f93edbcbc7c07feff286e032a3"
 }
