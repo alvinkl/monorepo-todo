@@ -1,6 +1,6 @@
 {
   "name": "@todo/components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,5 +21,9 @@
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   },
-  "gitHead": "ab77842b3252e08d88ff5ce14ce00f864d1d0bb7"
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false,
+  "gitHead": "272eb6ba3914111fe91553145fa98c6647ce85ce"
 }

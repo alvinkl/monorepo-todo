@@ -1,6 +1,6 @@
 {
   "name": "@todo/datasource",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.js",
   "scripts": {
     "build": "webpack -p"
@@ -21,6 +21,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "private": false,
   "description": "",
-  "gitHead": "ab77842b3252e08d88ff5ce14ce00f864d1d0bb7"
+  "gitHead": "272eb6ba3914111fe91553145fa98c6647ce85ce"
 }
