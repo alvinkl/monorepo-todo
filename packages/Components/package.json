@@ -1,6 +1,6 @@
 {
   "name": "@todo/components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,6 @@
     "typescript": "^3.0.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "gitHead": "ab77842b3252e08d88ff5ce14ce00f864d1d0bb7"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@todo/mainApp",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,9 +19,13 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-mobx": "^1.0.3"
-  }
+  },
+  "gitHead": "ab77842b3252e08d88ff5ce14ce00f864d1d0bb7"
 }
