@@ -1,0 +1,8 @@
+.td-list-item {
+    padding: 4px 0px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.td-list-item:last-of-type {
+    border: none;
+}
