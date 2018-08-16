@@ -1,6 +1,19 @@
 {
+  "version": "independent",
   "packages": [
     "packages/*"
   ],
-  "version": "independent"
+  "lerna": "3.0.6",
+  "npmClient": "yarn",
+  "npmClientArgs": [
+    "--no-lockfile"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.test.*"
+      ]
+    }
+  }
 }

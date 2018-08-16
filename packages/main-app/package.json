@@ -10,8 +10,16 @@
   },
   "author": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
+    "@alvin/datasource": "^1.0.0",
     "@alvin/ui": "^1.0.0",
+    "@zeit/next-css": "^0.2.0",
+    "@zeit/next-typescript": "^1.1.0",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.5",
     "next": "^6.1.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"

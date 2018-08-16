@@ -32,4 +32,4 @@ export class TodoListItemStore {
     }
 }
 
-export default { TodoListItemStore }
+export default TodoListItemStore
