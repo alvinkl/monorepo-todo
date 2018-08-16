@@ -4,7 +4,7 @@ import { observable } from "mobx";
 
 enum ScreenType {
   Active,
-  Completed,
+  Completed
 }
 
 import { ITodoContainerStore } from './interfaces/ITodoContainerStore'
@@ -17,8 +17,8 @@ import { TextBox } from '@alvin/ui'
 
 @observer
 class TodoContainer extends React.Component<ITodoContainer, {}> {
-  @observable
-  activeScreen: ScreenType: ScreenType.Active
+
+  @observable activeScreen: ScreenType = ScreenType.Active
 
   render() {
         return (
