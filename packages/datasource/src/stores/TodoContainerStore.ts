@@ -1,48 +1,53 @@
-import { observable, action, computed } from 'mobx'
-import { TodoListItemStore } from './TodoListItemStore'
+import { observable, action, computed } from "mobx";
+import { TodoListItemStore } from "./TodoListItemStore";
 // import { ITodoService } from '../services/ITodoService'
 
 export interface ITodoService {
-    addTodo(todo: TodoListItemStore)
-    saveTodos(todos: TodoListItemStore[])
-    getTodos(): TodoListItemStore[]
+  addTodo(todo: TodoListItemStore);
+  saveTodos(todos: TodoListItemStore[]);
+  getTodos(): TodoListItemStore[];
 }
 
 export class TodoContainerStore {
-    @observable items: TodoListItemStore[] = []
-    private service?: ITodoService
+  @observable
+  items: TodoListItemStore[] = [];
 
-    constructor(service: ITodoService) {
-        this.service = service
-    }
+  private service?: ITodoService;
 
-    @computed get activeItems() {
-        return this.items
-            .filter(object => !object.isCompleted)
-            .sort(
-                (__dirname, secondObject) => 
-                secondObject.id
-            )
-    }
+  constructor(service: ITodoService) {
+    this.service = service;
+  }
 
-    @computed get completedItems() {
-        return this.items
-            .filter(object => object.isCompleted)
-            .sort((_, obj) => obj.id)
-    }
+  @computed
+  get activeItems() {
+    return this.items
+      .filter(object => !object.isCompleted)
+      .sort((__dirname, secondObject) => secondObject.id);
+  }
 
-    @action addItem(item: TodoListItemStore) {
-        this.service.addTodo(item)
-        this.items.push(item)
-    }
+  @computed
+  get completedItems() {
+    return this.items
+      .filter(object => object.isCompleted)
+      .sort((_, obj) => obj.id);
+  }
 
-    @action saveItems() {
-        this.service.saveTodos(this.items)
-    }
+  @action
+  addItem(text: string) {
+    const item = new TodoListItemStore(text);
+    this.service.addTodo(item);
+    this.items.push(item);
+  }
 
-    @action loadItems() {
-        this.items = this.service.getTodos()
-    }
+  @action
+  saveItems() {
+    this.service.saveTodos(this.items);
+  }
+
+  @action
+  loadItems() {
+    this.items = this.service.getTodos();
+  }
 }
 
-export default TodoContainerStore
+export default TodoContainerStore;

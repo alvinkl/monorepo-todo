@@ -8,6 +8,7 @@
   "npmClientArgs": [
     "--no-lockfile"
   ],
+  "useWorkspaces": true,
   "command": {
     "publish": {
       "ignoreChanges": [

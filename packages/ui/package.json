@@ -11,7 +11,11 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   }

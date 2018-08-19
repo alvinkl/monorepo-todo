@@ -7,6 +7,8 @@ exports.default = exports.TodoContainerStore = void 0;
 
 var _mobx = require("mobx");
 
+var _TodoListItemStore = require("./TodoListItemStore");
+
 var _class, _descriptor;
 
 function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
@@ -31,7 +33,8 @@ let TodoContainerStore = (_class = class TodoContainerStore {
     return this.items.filter(object => object.isCompleted).sort((_, obj) => obj.id);
   }
 
-  addItem(item) {
+  addItem(text) {
+    const item = new _TodoListItemStore.TodoListItemStore(text);
     this.service.addTodo(item);
     this.items.push(item);
   }

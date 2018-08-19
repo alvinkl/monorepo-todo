@@ -9,7 +9,7 @@ export const TodoListView = inject("todos")(
     return (
       <ul>
         {todos.map(d => (
-          <TodoListItem {...d} key={d.id} onChange={onchange.bind(null, d)} />
+          <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
         ))}
       </ul>
     );
