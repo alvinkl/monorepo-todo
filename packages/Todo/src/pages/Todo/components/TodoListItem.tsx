@@ -1,6 +1,7 @@
+import * as React from "react";
 import { observer } from "mobx-react";
 
-import "./TodoListItem.css";
+// import "./TodoListItem.css";
 
 export const TodoListItem = observer(({ text, isCompleted, ...args }) => (
   <div className="td-list-item">
@@ -18,6 +19,6 @@ export const TodoListItem = observer(({ text, isCompleted, ...args }) => (
       </div>
     </div>
   </div>
-  ));
+));
 
 export default TodoListItem;

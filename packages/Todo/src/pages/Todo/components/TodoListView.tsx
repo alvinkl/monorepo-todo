@@ -1,8 +1,9 @@
+import * as React from "react";
 import { observer, inject } from "mobx-react";
 
 import TodoListItem from "./TodoListItem";
 
-import "./TodoListView.css";
+// import "./TodoListView.css";
 
 export const TodoListView = inject("todos")(
   observer(({ todos, onChange }) => {

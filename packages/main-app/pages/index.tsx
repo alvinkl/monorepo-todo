@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import { TodoContainerStore, LocalTodoService } from "@alvin/datasource";
 
-import Todo from "../src/containers/Todo/Todo";
+import TodoPage from "../src/containers/TodoPage";
 
 @observer
 export default class IndexPage extends React.Component {
@@ -22,7 +22,7 @@ export default class IndexPage extends React.Component {
   render() {
     return (
       <div>
-        <Todo store={this.store} />
+        <TodoPage store={this.store} />
       </div>
     );
   }

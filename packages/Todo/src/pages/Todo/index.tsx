@@ -16,7 +16,7 @@ interface ITodoContainer {
 }
 
 @observer
-class TodoContainer extends React.Component<ITodoContainer, {}> {
+export class TodoContainer extends React.Component<ITodoContainer, {}> {
   @observable
   activeScreen: ScreenType = ScreenType.Active;
 

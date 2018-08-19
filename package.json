@@ -21,7 +21,7 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src --ignore test.jsx -d lib --config-file ../../._babelrc --extensions \".ts,.tsx,.js,.jsx\""
+      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src --ignore test.jsx -d lib --config-file ../../._babelrc --extensions \".ts,.tsx,.js,.jsx\" --copy-files"
     }
   },
   "keywords": [],

@@ -1,0 +1,57 @@
+Arguments: 
+  /Users/alvinlim/.nvm/versions/node/v8.11.3/bin/node /Users/alvinlim/.nvm/versions/node/v8.11.3/bin/yarn bootstrap
+
+PATH: 
+  /Users/alvinlim/.nvm/versions/node/v8.11.3/bin:/Users/alvinlim/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/bin:/Users/alvinlim/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/gem/bin:/Users/alvinlim/.vimpkg/bin
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  8.11.3
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/alvinlim/github/monorepo-todo/packages/Todo/package.json: Unexpected token } in JSON at position 541
+      at JSON.parse (<anonymous>)
+      at /Users/alvinlim/.nvm/versions/node/v8.11.3/lib/node_modules/yarn/lib/cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (/Users/alvinlim/.nvm/versions/node/v8.11.3/lib/node_modules/yarn/lib/cli.js:92:30)
+      at /Users/alvinlim/.nvm/versions/node/v8.11.3/lib/node_modules/yarn/lib/cli.js:103:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "name": "@alvin/todo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "peerDependencies": {
+      "mobx": "^5.0.3",
+      "mobx-react": "^5.2.5",
+      "react": "^16.4.2",
+      "react-dom": "^16.4.2",
+      "@alvin/ui": "^1.0.0"
+    },
+    "devDependencies": {
+      "mobx": "^5.0.3",
+      "mobx-react": "^5.2.5",
+      "react": "^16.4.2",
+      "react-dom": "^16.4.2",
+      "@alvin/ui": "^1.0.0"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
