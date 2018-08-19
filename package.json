@@ -12,8 +12,6 @@
     "lint": "eslint --cache --ignore-path .gitignore ./packages/*/src",
     "test": "jest",
     "build:babel": "better-npm-run build:packages",
-    "build:webpack": "lerna run build:webpack",
-    "build": "yarn build:babel && yarn build:webpack",
     "watch": "yarn build:babel -w"
   },
   "betterScripts": {

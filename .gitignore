@@ -3,3 +3,6 @@ node_modules
 .vscode
 lib
 .next
+yarn-error.log
+.eslintcache
+lerna-debug.log

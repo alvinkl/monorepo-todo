@@ -2,14 +2,27 @@
     "env": {
         "test": {
             "presets": [
+                "@babel/typescript",
                 [
-                    "@babel/env",
+                    "@babel/preset-env",
                     {
                         "modules": "commonjs",
                         "shippedProposals": true
                     }
                 ],
                 "@babel/react"
+            ],
+            "plugins": [
+                ["module-resolver", {
+                    "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                    "symlinks": true,
+                    "alias": {
+                        "mobx": "mobx"
+                    }
+                }],
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ["@babel/proposal-class-properties", { "loose": true }],
+                "@babel/proposal-object-rest-spread"
             ]
         },
         "bundles": {
