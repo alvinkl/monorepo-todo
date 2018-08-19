@@ -105,14 +105,14 @@ class TodoContainer extends React.Component<ITodoContainer, {}> {
     );
   }
 
-  onChangeComplete(todo) {
+  onChangeComplete = todo => {
     todo.setCompleteness(!todo.isCompleted);
-  }
+  };
 
-  onSubmitNewTodo(text: string) {
-    console.log(text);
+  onSubmitNewTodo = (text: string) => {
+    console.log(this.props);
     this.props.store.addItem(text);
-  }
+  };
 }
 
 export default TodoContainer;

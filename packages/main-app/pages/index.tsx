@@ -9,10 +9,19 @@ import Todo from "../src/containers/Todo/Todo";
 export default class IndexPage extends React.Component {
   store = new TodoContainerStore(new LocalTodoService());
 
+  componentDidMount() {
+    this.store.loadItems();
+
+    window.onbeforeunload = () => this.beforeUnload();
+  }
+
+  beforeUnload() {
+    this.store.saveItems();
+  }
+
   render() {
     return (
       <div>
-        <h1>Welcome to next.js</h1>
         <Todo store={this.store} />
       </div>
     );

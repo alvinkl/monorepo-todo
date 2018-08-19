@@ -1,12 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { TodoListItemStore } from "./TodoListItemStore";
-// import { ITodoService } from '../services/ITodoService'
-
-export interface ITodoService {
-  addTodo(todo: TodoListItemStore);
-  saveTodos(todos: TodoListItemStore[]);
-  getTodos(): TodoListItemStore[];
-}
+import ITodoService from "../interfaces/ITodoService";
 
 export class TodoContainerStore {
   @observable
