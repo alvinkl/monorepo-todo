@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { MemoStore } from '@alvin/datasource';
+import { MemoStore } from '../../../datasource/lib';
 
-import { Memo } from '@alvin/memo';
+import { Memo } from '../../../Memo/lib';
 
 export class MemoPage extends React.Component {
   store = new MemoStore('Memo Text');

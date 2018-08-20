@@ -1,1 +1,1 @@
-export { default as Todo } from './pages/Todo/index';
+export { default as Todo } from './pages/Todo';

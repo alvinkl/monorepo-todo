@@ -157,22 +157,19 @@ cat > $WORKDIR/package.json << EndOfMessage
 }
 EndOfMessage
 
-elif [ "$PACKAGE_TYPE" == "data" ]
-    then
+	WORKDIR=packages/datasource
+    mkdir $WORKDIR/src/$PACKAGE_NAME/interfaces
+    mkdir $WORKDIR/src/$PACKAGE_NAME/services
+    mkdir $WORKDIR/src/$PACKAGE_NAME/stores
 
-		WORKDIR=packages/datasource
-    mkdir $WORKDIR/src/interfaces/$PACKAGE_NAME
-    mkdir $WORKDIR/src/services/$PACKAGE_NAME
-    mkdir $WORKDIR/src/stores/$PACKAGE_NAME
-
-cat > $WORKDIR/src/interfaces/$PACKAGE_NAME/interface.ts  << EndOfMessage 
+cat > $WORKDIR/src/$PACKAGE_NAME/interfaces/interface.ts  << EndOfMessage 
 export default interface Interface {
 	addThing(thing: string);
 	getThing(): string;
 }
 EndOfMessage
 
-cat > $WORKDIR/src/services/$PACKAGE_NAME/services.ts  << EndOfMessage 
+cat > $WORKDIR/src/$PACKAGE_NAME/services/services.ts  << EndOfMessage 
 import Interface from '../../interfaces/$PACKAGE_NAME/interface'
 
 export class Service implements Interface {
@@ -188,7 +185,66 @@ export class Service implements Interface {
 export default Service;
 EndOfMessage
 
-cat > $WORKDIR/src/stores/$PACKAGE_NAME/store.ts  << EndOfMessage 
+cat > $WORKDIR/src/$PACKAGE_NAME/stores/store.ts  << EndOfMessage 
+import { observable, action, computed, configure } from 'mobx'
+import Interface from '../../interfaces/$PACKAGE_NAME/interface'
+
+configure({
+	enforceActions: true
+});
+
+export class Store {
+	@observable
+	thing: string = '';
+
+	@computed
+	get things() {
+		const arr = Array.apply(null, { length: 5 }).map(a => a = this.string);
+		return arr;
+	}
+
+	@action
+	setThing(thing: string) {
+		this.thing = thing
+	}
+}
+
+export default Store
+EndOfMessage
+	
+
+elif [ "$PACKAGE_TYPE" == "data" ]
+    then
+
+	WORKDIR=packages/datasource
+    mkdir $WORKDIR/src/$PACKAGE_NAME/interfaces
+    mkdir $WORKDIR/src/$PACKAGE_NAME/services
+    mkdir $WORKDIR/src/$PACKAGE_NAME/stores
+
+cat > $WORKDIR/src/$PACKAGE_NAME/interfaces/interface.ts  << EndOfMessage 
+export default interface Interface {
+	addThing(thing: string);
+	getThing(): string;
+}
+EndOfMessage
+
+cat > $WORKDIR/src/$PACKAGE_NAME/services/services.ts  << EndOfMessage 
+import Interface from '../../interfaces/$PACKAGE_NAME/interface'
+
+export class Service implements Interface {
+	addThing(thing: string) {
+		// implementation
+	}
+
+	getThing() {
+		return 'implementation';
+	}
+}
+
+export default Service;
+EndOfMessage
+
+cat > $WORKDIR/src/$PACKAGE_NAME/stores/store.ts  << EndOfMessage 
 import { observable, action, computed, configure } from 'mobx'
 import Interface from '../../interfaces/$PACKAGE_NAME/interface'
 

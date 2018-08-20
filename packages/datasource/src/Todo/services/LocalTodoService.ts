@@ -1,8 +1,8 @@
-import ITodoService from "../../interfaces/Todo/ITodoService";
-import { TodoListItemStore } from "../../stores/Todo/TodoListItemStore";
+import ITodoService from '../interfaces/ITodoService';
+import { TodoListItemStore } from '../stores/TodoListItemStore';
 
 export class LocalTodoService implements ITodoService {
-  private key: string = "todos";
+  private key: string = 'todos';
 
   addTodo(todo: TodoListItemStore) {
     const object = todo.current;

@@ -1,4 +1,4 @@
-import TodoListItemStore from "../../stores/Todo/TodoListItemStore";
+import TodoListItemStore from '../stores/TodoListItemStore';
 
 export default interface ITodoService {
   addTodo(todo: TodoListItemStore);
