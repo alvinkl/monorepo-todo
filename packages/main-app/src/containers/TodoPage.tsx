@@ -4,16 +4,17 @@ import { observer } from 'mobx-react';
 import '@alvin/todo/lib/pages/Todo/components/TodoListItem.css';
 import '@alvin/todo/lib/pages/Todo/components/TodoListView.css';
 
-import { TodoContainerStore, LocalTodoService } from '@alvin/datasource';
+import { Todo as T } from '@alvin/datasource';
 
 import { Todo } from '@alvin/todo';
 
 @observer
 export class TodoPage extends React.Component {
-  store = new TodoContainerStore(new LocalTodoService());
+  store = new T.TodoContainerStore(new T.LocalTodoService());
 
   componentDidMount() {
     this.store.loadItems();
+    this.store.fetchTodos();
 
     window.onbeforeunload = () => this.beforeUnload();
   }
