@@ -1,5 +1,5 @@
-import ITodoService from "../interfaces/ITodoService";
-import { TodoListItemStore } from "../stores/TodoListItemStore";
+import ITodoService from "../../interfaces/Todo/ITodoService";
+import { TodoListItemStore } from "../../stores/Todo/TodoListItemStore";
 
 export class LocalTodoService implements ITodoService {
   private key: string = "todos";

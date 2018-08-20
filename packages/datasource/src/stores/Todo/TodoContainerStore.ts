@@ -1,6 +1,10 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, configure } from "mobx";
 import { TodoListItemStore } from "./TodoListItemStore";
-import ITodoService from "../interfaces/ITodoService";
+import ITodoService from "../../interfaces/Todo/ITodoService";
+
+configure({
+  enforceActions: true,
+});
 
 export class TodoContainerStore {
   @observable
