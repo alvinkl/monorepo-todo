@@ -136,7 +136,7 @@ export class IComponentStoreA {
 export default IComponentStoreA;
 EndOfMessage
 
-cat > $WORKDIR/src/pages/index.ts  << EndOfMessage 
+cat > $WORKDIR/src/index.ts  << EndOfMessage 
 export { default as PageA } from './pages/PageA'
 EndOfMessage
 
