@@ -1,4 +1,4 @@
-import { observable, action, configure } from "mobx";
+import { observable, action, configure } from 'mobx';
 
 configure({
   enforceActions: true,
@@ -22,8 +22,9 @@ export class TodoListItemStore {
     this.isCompleted = isCompleted;
   }
 
+  @action
   public static init(json: any): TodoListItemStore {
-    return new TodoListItemStore(json["text"], json["id"], json["isCompleted"]);
+    return new TodoListItemStore(json['text'], json['id'], json['isCompleted']);
   }
 
   @action

@@ -1,6 +1,8 @@
-import { observable, action, computed, configure } from "mobx";
-import { TodoListItemStore } from "./TodoListItemStore";
-import ITodoService from "../../interfaces/Todo/ITodoService";
+import { observable, action, computed, configure } from 'mobx';
+
+import to from '../../utils/asyncAwait';
+import { TodoListItemStore } from './TodoListItemStore';
+import ITodoService from '../../interfaces/Todo/ITodoService';
 
 configure({
   enforceActions: true,
@@ -9,6 +11,12 @@ configure({
 export class TodoContainerStore {
   @observable
   items: TodoListItemStore[] = [];
+
+  @observable
+  fetchedItems: TodoListItemStore[] = [];
+
+  @observable
+  error: Error = null;
 
   private service?: ITodoService;
 
@@ -45,6 +53,31 @@ export class TodoContainerStore {
   @action
   loadItems() {
     this.items = this.service.getTodos();
+  }
+
+  async fetchTodos() {
+    const [err, response] = await to(
+      fetch('https://jsonplaceholder.typicode.com/todos')
+    );
+    if (err) return this.setError(err);
+
+    const data = await response.json();
+
+    const dt = data.map(
+      ({ title, id, completed }) => new TodoListItemStore(title, id, completed)
+    );
+
+    this.setFetchedItems(dt);
+  }
+
+  @action
+  setFetchedItems(item: TodoListItemStore[]) {
+    this.fetchedItems.push(...item);
+  }
+
+  @action
+  setError(error: Error) {
+    this.error = error;
   }
 }
 

@@ -15,8 +15,15 @@ export class MixMemoTodo extends React.Component {
 
   componentDidMount() {
     this.todoStore.loadItems();
+    this.todoStore.fetchTodos();
 
     window.onbeforeunload = () => this.beforeUnload();
+  }
+
+  handleError(error) {
+    this.setState({
+      error,
+    });
   }
 
   beforeUnload() {

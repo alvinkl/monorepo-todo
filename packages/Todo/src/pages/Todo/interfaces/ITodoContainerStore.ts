@@ -1,7 +1,9 @@
-import { ITodoListItemStore } from "./ITodoListItemStore";
+import { ITodoListItemStore } from './ITodoListItemStore';
 
 export class ITodoContainerStore {
   items: ITodoListItemStore[] = [];
+  fetchedItems: ITodoListItemStore[] = [];
+  error: Error = null;
 
   get activeItems() {
     return [];
@@ -11,7 +13,7 @@ export class ITodoContainerStore {
     return [];
   }
 
-  addItem(item: ITodoListItemStore) {}
+  addItem(text: string) {}
   saveItems() {}
   loadItems() {}
 }
