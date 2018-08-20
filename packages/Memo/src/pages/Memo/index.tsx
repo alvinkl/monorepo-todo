@@ -14,10 +14,14 @@ export class Memo extends React.Component<IComponentProps, {}> {
   render() {
     return (
       <div>
-        <ComponentA text={this.props.store.text} />
+        <ComponentA text={this.props.store.text} onSubmit={this.onSubmit} />
       </div>
     );
   }
+
+  onSubmit = (text: string) => {
+    this.props.store.changeText(text);
+  };
 }
 
 export default Memo;
