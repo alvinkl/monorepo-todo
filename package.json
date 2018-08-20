@@ -12,8 +12,9 @@
     "lint": "eslint --cache --ignore-path .gitignore ./packages/*/src",
     "test": "jest",
     "build:babel": "better-npm-run build:packages",
-    "watch": "yarn build:babel -w",
-    "dev": "concurrently \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
+    "clean": "better-npm-run clean:packages",
+    "watch": "better-npm-run build:packages -w",
+    "dev": "better-npm-run watch:development"
   },
   "betterScripts": {
     "build:packages": {
@@ -21,6 +22,15 @@
         "BABEL_ENV": "bundles"
       },
       "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src --ignore test.jsx -d lib --config-file ../../._babelrc --extensions \".ts,.tsx,.js,.jsx\" --copy-files"
+    },
+    "clean:packages": {
+      "command": "rm -rf packages/*/lib packages/*/.next"
+    },
+    "watch:development": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "concurrently \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
     }
   },
   "keywords": [],
