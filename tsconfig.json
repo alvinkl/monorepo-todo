@@ -3,9 +3,9 @@
     "compilerOptions": {
         "target": "esnext",
         "module": "esnext",
+        "moduleResolution": "node",
         "jsx": "preserve",
         "allowJs": true,
-        "moduleResolution": "classic",
         "allowSyntheticDefaultImports": true,
         "noUnusedLocals": true,
         "experimentalDecorators": true,

@@ -1,9 +1,9 @@
-import * as React from "react";
-import { observer } from "mobx-react";
+import * as React from 'react';
+import { observer } from 'mobx-react';
 
-import { IComponentStoreA } from "./interfaces/IComponentStoreA";
+import { IComponentStoreA } from './interfaces/IComponentStoreA';
 
-import ComponentA from "./components/ComponentA";
+import ComponentA from './components/ComponentA';
 
 interface IComponentProps {
   store?: IComponentStoreA;
