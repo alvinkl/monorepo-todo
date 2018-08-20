@@ -1,8 +1,8 @@
 import { observable, action, computed, configure } from 'mobx';
 
-import to from '../../utils/asyncAwait';
 import { TodoListItemStore } from './TodoListItemStore';
-import ITodoService from '../../interfaces/Todo/ITodoService';
+import ITodoService from '../interfaces/ITodoService';
+import fetchTodo from '../fetch/fetchTodo';
 
 configure({
   enforceActions: true,
@@ -56,9 +56,7 @@ export class TodoContainerStore {
   }
 
   async fetchTodos() {
-    const [err, response] = await to(
-      fetch('https://jsonplaceholder.typicode.com/todos')
-    );
+    const [err, response] = await fetchTodo();
     if (err) return this.setError(err);
 
     const data = await response.json();
