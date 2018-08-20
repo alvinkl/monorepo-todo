@@ -1,9 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import '@alvin/todo/lib/pages/Todo/components/TodoListItem.css';
-import '@alvin/todo/lib/pages/Todo/components/TodoListView.css';
-
 import { Todo as T } from '@alvin/datasource';
 
 import { Todo } from '@alvin/todo';

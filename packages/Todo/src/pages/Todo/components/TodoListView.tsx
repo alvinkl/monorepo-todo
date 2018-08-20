@@ -1,14 +1,21 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
+import { css } from 'emotion';
 
 import TodoListItem from './TodoListItem';
 
-// import "./TodoListView.css";
+const style = css`
+  padding: 10px;
+  bottom: 1px solid #dee2e6;
+  border-top: none;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+`;
 
 export const TodoListView = inject('todos')(
   observer(({ todos, error, onChange }) => {
     return (
-      <ul className="td-list-container">
+      <ul className={style}>
         {!error &&
           todos.map(d => (
             <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />

@@ -14,7 +14,7 @@
     "build:babel": "better-npm-run build:packages",
     "clean": "better-npm-run clean:packages",
     "watch": "better-npm-run build:packages -w",
-    "dev": "better-npm-run watch:development"
+    "dev": "better-npm-run clean:packages && better-npm-run watch:development"
   },
   "betterScripts": {
     "build:packages": {

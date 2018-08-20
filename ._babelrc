@@ -40,6 +40,7 @@
                 "@babel/react"
             ],
             "plugins": [
+                ["emotion", { "hoist": true }],
                 ["module-resolver", {
                     "extensions": [".js", ".jsx", ".ts", ".tsx"],
                     "symlinks": true,
