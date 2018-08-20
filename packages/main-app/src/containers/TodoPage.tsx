@@ -4,9 +4,9 @@ import { observer } from 'mobx-react';
 import '@alvin/todo/lib/pages/Todo/components/TodoListItem.css';
 import '@alvin/todo/lib/pages/Todo/components/TodoListView.css';
 
-import { TodoContainerStore, LocalTodoService } from '../../../datasource/lib';
+import { TodoContainerStore, LocalTodoService } from '@alvin/datasource';
 
-import { Todo } from '../../../Todo/lib';
+import { Todo } from '@alvin/todo';
 
 @observer
 export class TodoPage extends React.Component {
