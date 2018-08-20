@@ -222,4 +222,5 @@ fi
 
 
 
-echo "Package JSON created to $WORKDIR, please rerun yarn bootstrap"
+echo "Package JSON created to $WORKDIR, rerunning yarn bootstrap"
+yarn bootstrap
