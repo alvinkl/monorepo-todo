@@ -1,3 +1,15 @@
-import { Memo } from "@alvin/memo";
+import * as React from 'react';
 
-export default Memo;
+import { MemoStore } from '@alvin/datasource';
+
+import { Memo } from '@alvin/memo';
+
+export class MemoPage extends React.Component {
+  store = new MemoStore('Memo Text');
+
+  render() {
+    return <Memo store={this.store} />;
+  }
+}
+
+export default MemoPage;
