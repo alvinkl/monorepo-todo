@@ -20,7 +20,7 @@ export class LocalTodoService implements ITodoService {
   }
 
   getTodos(): TodoListItemStore[] {
-    const storageValue = localStorage.getItem(this.key);
+    const storageValue: string = localStorage.getItem(this.key) || '';
     const obj = (JSON.parse(storageValue) as any[]) || [];
 
     return obj.map(json => TodoListItemStore.init(json));

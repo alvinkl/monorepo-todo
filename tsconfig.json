@@ -18,9 +18,8 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "strictNullChecks": true,
-        "strict": true,
+        // "strict": true,
         "preserveSymlinks": true,
-        "noResolve": true,
 
         "sourceMap": false,
         "declaration": true,
@@ -32,10 +31,21 @@
         ],
         "skipLibCheck": true,
 
-        "outDir": "lib"
+        "types": [
+            "jest",
+            "@types/packages/*"
+        ],
+
+        "baseUrl": "./packages",
+        "paths": {
+            "@alvin/*": ["./*/src"]
+        },
+
+        "outDir": "@types"
     },
 
     "exclude": [
-        "lib/**/*"
+        "lib/**/*",
+        "./packages/main-app/**"
     ]
 }
