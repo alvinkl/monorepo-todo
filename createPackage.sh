@@ -126,14 +126,14 @@ h1 {
 EndOfMessage
 
 cat > $WORKDIR/src/pages/PageA/interfaces/IComponentStoreA.ts  << EndOfMessage 
-export class IComponentStoreA {
-	text: string = '';
+export interface IComponentStoreA {
+  text: string;
 
-	get text() {}
-	changeText() {}
+  changeText: (text: string) => void;
 }
 
 export default IComponentStoreA;
+
 EndOfMessage
 
 cat > $WORKDIR/src/index.ts  << EndOfMessage 

@@ -1,25 +1,20 @@
 import { ITodoListItemStore } from './ITodoListItemStore';
 
-export class ITodoContainerStore {
-  items: ITodoListItemStore[] = [];
+export interface ITodoContainerStore {
+  items: ITodoListItemStore[];
 
-  fetchedItems: ITodoListItemStore[] = [];
+  fetchedItems: ITodoListItemStore[];
 
-  error: Error | null = null;
+  error?: Error;
 
-  get activeItems() {
-    return [];
-  }
+  activeItems: ITodoListItemStore[];
 
-  get completedItems() {
-    return [];
-  }
+  completedItems: ITodoListItemStore[];
 
-  addItem(text: string) {}
+  addItem: (text: string) => void;
 
-  saveItems() {}
-
-  loadItems() {}
+  saveItems: Function;
+  loadItems: Function;
 }
 
 export default ITodoContainerStore;

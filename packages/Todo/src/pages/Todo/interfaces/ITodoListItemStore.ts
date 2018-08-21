@@ -1,15 +1,13 @@
-export class ITodoListItemStore {
+export interface ITodoListItemStore {
   id: number;
 
   text: string;
 
   isCompleted: boolean;
 
-  setCompleteness(completed: boolean) {}
+  setCompleteness: (completed: boolean) => void;
 
-  get current(): any {
-    return this;
-  }
+  current: any;
 }
 
 export default ITodoListItemStore;

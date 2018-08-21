@@ -1,7 +1,7 @@
-export class IComponentStoreA {
-  text: string = '';
+export interface IComponentStoreA {
+  text: string;
 
-  changeText(text: string) {}
+  changeText: (text: string) => void;
 }
 
 export default IComponentStoreA;
