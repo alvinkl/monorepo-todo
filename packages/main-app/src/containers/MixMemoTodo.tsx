@@ -7,6 +7,7 @@ import { Todo } from '@alvin/todo';
 
 export class MixMemoTodo extends React.Component {
   memoStore = new M.MemoStore('Mix Memo Todo');
+
   todoStore = new T.TodoContainerStore(new T.LocalTodoService());
 
   componentDidMount() {
@@ -14,12 +15,6 @@ export class MixMemoTodo extends React.Component {
     this.todoStore.fetchTodos();
 
     window.onbeforeunload = () => this.beforeUnload();
-  }
-
-  handleError(error) {
-    this.setState({
-      error,
-    });
   }
 
   beforeUnload() {

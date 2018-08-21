@@ -7,8 +7,10 @@ configure({
 export class TodoListItemStore {
   @observable
   id: number;
+
   @observable
   text: string;
+
   @observable
   isCompleted: boolean;
 
@@ -24,7 +26,7 @@ export class TodoListItemStore {
 
   @action
   public static init(json: any): TodoListItemStore {
-    return new TodoListItemStore(json['text'], json['id'], json['isCompleted']);
+    return new TodoListItemStore(json.text, json.id, json.isCompleted);
   }
 
   @action

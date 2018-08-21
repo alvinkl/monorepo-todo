@@ -16,9 +16,9 @@ export class TodoContainerStore {
   fetchedItems: TodoListItemStore[] = [];
 
   @observable
-  error: Error = null;
+  error: Error | null = null;
 
-  private service?: ITodoService;
+  private service: ITodoService;
 
   constructor(service: ITodoService) {
     this.service = service;
@@ -56,12 +56,14 @@ export class TodoContainerStore {
   }
 
   async fetchTodos() {
-    const [err, response] = await fetchTodo();
-    if (err) return this.setError(err);
+    const { error, data } = await fetchTodo();
+    console.log('error', error, data);
+    if (error) {
+      this.setError(error);
+      return;
+    }
 
-    const data = await response.json();
-
-    const dt = data.map(
+    const dt = data!.map(
       ({ title, id, completed }) => new TodoListItemStore(title, id, completed)
     );
 

@@ -1,7 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 
-export const TextBox = props => {
-  let textInput;
+interface PropsTypes {
+  onSubmit: Function;
+}
+
+export const TextBox = ({ onSubmit }: PropsTypes) => {
+  let textInput: HTMLInputElement;
 
   return (
     <div className="input-group mb-3">
@@ -9,7 +13,7 @@ export const TextBox = props => {
         type="text"
         className="form-control"
         placeholder="Input your task"
-        ref={input => {
+        ref={(input: HTMLInputElement) => {
           textInput = input;
         }}
       />
@@ -19,8 +23,8 @@ export const TextBox = props => {
           className="btn btn-primary"
           type="button"
           onClick={() => {
-            props.onSubmit(textInput.value);
-            textInput.value = "";
+            onSubmit(textInput.value);
+            textInput.value = '';
           }}
         >
           Submit

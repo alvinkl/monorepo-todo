@@ -2,6 +2,8 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import { css } from 'emotion';
 
+import ITodoListItemStore from '../interfaces/ITodoListItemStore';
+
 import TodoListItem from './TodoListItem';
 
 const style = css`
@@ -13,18 +15,16 @@ const style = css`
 `;
 
 export const TodoListView = inject('todos')(
-  observer(({ todos, error, onChange }) => {
-    return (
-      <ul className={style}>
-        {!error &&
-          todos.map(d => (
-            <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
-          ))}
+  observer(({ todos, error, onChange }) => (
+    <ul className={style}>
+      {!error &&
+        todos.map((d: ITodoListItemStore) => (
+          <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
+        ))}
 
-        {error && <h1>ERROR LAH</h1>}
-      </ul>
-    );
-  })
+      {error && <h1>ERROR LAH</h1>}
+    </ul>
+  ))
 );
 
 export default TodoListView;

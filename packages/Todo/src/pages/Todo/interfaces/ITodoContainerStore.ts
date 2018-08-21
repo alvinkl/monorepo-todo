@@ -2,8 +2,10 @@ import { ITodoListItemStore } from './ITodoListItemStore';
 
 export class ITodoContainerStore {
   items: ITodoListItemStore[] = [];
+
   fetchedItems: ITodoListItemStore[] = [];
-  error: Error = null;
+
+  error: Error | null = null;
 
   get activeItems() {
     return [];
@@ -14,7 +16,9 @@ export class ITodoContainerStore {
   }
 
   addItem(text: string) {}
+
   saveItems() {}
+
   loadItems() {}
 }
 

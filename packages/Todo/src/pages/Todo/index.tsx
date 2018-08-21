@@ -4,6 +4,7 @@ import { observable, action } from 'mobx';
 
 import { TextBox } from '@alvin/ui';
 import { ITodoContainerStore } from './interfaces/ITodoContainerStore';
+import { ITodoListItemStore } from './interfaces/ITodoListItemStore';
 
 import TodoListView from './components/TodoListView';
 
@@ -12,17 +13,37 @@ enum ScreenType {
   Completed,
   Fetched,
 }
-interface ITodoContainer {
-  store?: ITodoContainerStore;
+interface PropTypes {
+  store: ITodoContainerStore;
 }
 
 @observer
-export class TodoContainer extends React.Component<ITodoContainer, {}> {
+export class TodoContainer extends React.Component<PropTypes, {}> {
   @observable
   activeScreen: ScreenType = ScreenType.Active;
 
+  @action
+  setActiveScreen = (activeScreen: number) => {
+    this.activeScreen = activeScreen;
+  };
+
+  onChangeComplete = (todo: ITodoListItemStore) => {
+    todo.setCompleteness(!todo.isCompleted);
+  };
+
+  onSubmitNewTodo = (text: string) => {
+    const {
+      store: { addItem },
+    } = this.props;
+
+    addItem(text);
+  };
+
   render() {
-    const { store } = this.props;
+    const {
+      store,
+      store: { activeItems, completedItems, fetchedItems },
+    } = this.props;
 
     return (
       <div className="container td-container">
@@ -33,7 +54,7 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
             <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a
                 className={
-                  this.activeScreen == ScreenType.Active
+                  this.activeScreen === ScreenType.Active
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
@@ -51,7 +72,7 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
               </a>
               <a
                 className={
-                  this.activeScreen == ScreenType.Completed
+                  this.activeScreen === ScreenType.Completed
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
@@ -69,7 +90,7 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
               </a>
               <a
                 className={
-                  this.activeScreen == ScreenType.Completed
+                  this.activeScreen === ScreenType.Completed
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
@@ -90,7 +111,7 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
           <div className="tab-content" id="nav-tabContent">
             <div
               className={
-                this.activeScreen == ScreenType.Active
+                this.activeScreen === ScreenType.Active
                   ? 'tab-pane fade show active'
                   : 'tab-pane fade'
               }
@@ -100,13 +121,13 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
             >
               <TodoListView
                 key="active_list"
-                todos={store ? store.activeItems : []}
+                todos={store ? activeItems : []}
                 onChange={this.onChangeComplete}
               />
             </div>
             <div
               className={
-                this.activeScreen == ScreenType.Completed
+                this.activeScreen === ScreenType.Completed
                   ? 'tab-pane fade show active'
                   : 'tab-pane fade'
               }
@@ -116,13 +137,13 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
             >
               <TodoListView
                 key="complete_list"
-                todos={store ? store.completedItems : []}
+                todos={store ? completedItems : []}
                 onChange={this.onChangeComplete}
               />
             </div>
             <div
               className={
-                this.activeScreen == ScreenType.Fetched
+                this.activeScreen === ScreenType.Fetched
                   ? 'tab-pane fade show active'
                   : 'tab-pane fade'
               }
@@ -132,7 +153,7 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
             >
               <TodoListView
                 key="complete_list"
-                todos={store ? store.fetchedItems : []}
+                todos={store ? fetchedItems : []}
                 onChange={this.onChangeComplete}
                 error={store.error}
               />
@@ -142,19 +163,6 @@ export class TodoContainer extends React.Component<ITodoContainer, {}> {
       </div>
     );
   }
-
-  @action
-  setActiveScreen = activeScreen => {
-    this.activeScreen = activeScreen;
-  };
-
-  onChangeComplete = todo => {
-    todo.setCompleteness(!todo.isCompleted);
-  };
-
-  onSubmitNewTodo = (text: string) => {
-    this.props.store.addItem(text);
-  };
 }
 
 export default TodoContainer;

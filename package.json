@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "lint": "eslint --cache --ignore-path .gitignore ./packages/*/src",
+    "lint": "eslint --ignore-path .eslintignore \"packages/**/src/**\"",
     "test": "jest",
     "build:babel": "better-npm-run build:packages",
     "clean": "better-npm-run clean:packages",

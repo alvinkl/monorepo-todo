@@ -1,17 +1,29 @@
 {
     "compileOnSave": false,
+
     "compilerOptions": {
+        "rootDir": ".",
         "target": "esnext",
+
         "module": "esnext",
         "moduleResolution": "node",
         "jsx": "preserve",
+
         "allowJs": true,
+
         "allowSyntheticDefaultImports": true,
         "noUnusedLocals": true,
+        "noUnusedParameters": true,
         "experimentalDecorators": true,
         "removeComments": true,
         "preserveConstEnums": true,
+        "strictNullChecks": true,
+        "strict": true,
+        "preserveSymlinks": true,
+        "noResolve": true,
+
         "sourceMap": false,
+
         "lib": [
             "dom",
             "es2015",
@@ -19,6 +31,7 @@
         ],
         "skipLibCheck": true
     },
+    
     "exclude": [
         "lib/**/*"
     ]

@@ -1,5 +1,5 @@
 export class IComponentStoreA {
-  text: string = "";
+  text: string = '';
 
   changeText(text: string) {}
 }
