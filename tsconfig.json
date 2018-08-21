@@ -2,7 +2,6 @@
     "compileOnSave": false,
 
     "compilerOptions": {
-        "rootDir": ".",
         "target": "esnext",
 
         "module": "esnext",
@@ -32,20 +31,22 @@
         "skipLibCheck": true,
 
         "types": [
-            "jest",
-            "@types/packages/*"
+            "jest"
         ],
 
-        "baseUrl": "./packages",
-        "paths": {
-            "@alvin/*": ["./*/src"]
-        },
+        "rootDir": ".",
+        // "baseUrl": "./packages",
+        // "paths": {
+        //     "@alvin/*": ["./*/src"]
+        // },
 
         "outDir": "@types"
     },
 
     "exclude": [
         "lib/**/*",
-        "./packages/main-app/**"
+        "./packages/main-app/**",
+        "**/*.test.tsx",
+        "**/*.test.ts"
     ]
 }

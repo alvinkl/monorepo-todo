@@ -34,7 +34,7 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently \"yarn build:declaration\" \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
+      "command": "concurrently  \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
     }
   },
   "keywords": [],
