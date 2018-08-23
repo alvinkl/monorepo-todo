@@ -7,37 +7,35 @@ WORKDIR=packages/$PACKAGE_NAME
 
 echo "Creating New Packages"
 
-if [ "$PACKAGE_TYPE" == "react" ]
+if [ "$PACKAGE_TYPE" == "ui" ]
     then
-    PKG_JSON="
-        \"emotion\": \"^9.2.6\",
-        \"react\": \"^16.4.2\",
-        \"react-dom\": \"^16.4.2\",
-        \"react-emotion\": \"^9.2.6\"
-    "
-		mkdir $WORKDIR
-		mkdir $WORKDIR/src
-    mkdir $WORKDIR/src/ComponentA
-cat > $WORKDIR/src/ComponentA/ComponentA.tsx  << EndOfMessage 
+    WORKDIR=packages/ui/src/$PACKAGE_NAME
+    mkdir $WORKDIR
+cat > $WORKDIR/$PACKAGE_NAME.tsx  << EndOfMessage 
 import * as React from 'react';
+import { css } from 'emotion'
 
-export class ComponentA extends React.Component {
+const style = css\`
+    color: red;
+\`
+
+export class $PACKAGE_NAME extends React.Component {
 	render() {
-		const str:string = 'ComponentA'
+		const str:string = '$PACKAGE_NAME'
 
 		return (
-			<h1>{str}</h1>
+			<h1 className={style}>{str}</h1>
 		);
 	}
 }
 
-export default ComponentA;
+export default $PACKAGE_NAME;
 EndOfMessage
 
-cat > $WORKDIR/src/ComponentA/ComponentA.test.jsx  << EndOfMessage 
+cat > $WORKDIR/$PACKAGE_NAME.test.jsx  << EndOfMessage 
 import React from "react";
 import ReactDOM from "react-dom";
-import ComponentA from "./ComponentA";
+import $PACKAGE_NAME from "./$PACKAGE_NAME";
 
 it("renders component", () => {
 	const div = document.createElement("div");
@@ -45,28 +43,6 @@ it("renders component", () => {
 	ReactDOM.unmountComponentAtNode(div);
 });
 EndOfMessage
-
-cat > $WORKDIR/src/index.ts  << EndOfMessage 
-export { default as ComponentA } from './ComponentA/ComponentA';
-EndOfMessage
-
-cat > $WORKDIR/package.json << EndOfMessage 
-{
-    "name": "@alvin/$PACKAGE_NAME",
-    "version": "1.0.0",
-    "description": "",
-    "main": "lib/index.js",
-    "scripts": {},
-    "publishConfig": {
-        "access": "public"
-    },
-    "author": "",
-    "license": "ISC",
-    "peerDependencies": {$PKG_JSON},
-    "devDependencies": {$PKG_JSON}
-}
-EndOfMessage
-
 
 elif [ "$PACKAGE_TYPE" == "feature" ]
     then
