@@ -10,8 +10,10 @@ echo "Creating New Packages"
 if [ "$PACKAGE_TYPE" == "react" ]
     then
     PKG_JSON="
+        \"emotion\": \"^9.2.6\",
         \"react\": \"^16.4.2\",
-        \"react-dom\": \"^16.4.2\"
+        \"react-dom\": \"^16.4.2\",
+        \"react-emotion\": \"^9.2.6\"
     "
 		mkdir $WORKDIR
 		mkdir $WORKDIR/src
@@ -69,11 +71,14 @@ EndOfMessage
 elif [ "$PACKAGE_TYPE" == "feature" ]
     then
     PKG_JSON="
+        \"@alvin/datasource\": \"^1.0.0\",
+        \"@alvin/ui\": \"^1.0.0\",
+        \"emotion\": \"^9.2.6\",
         \"mobx\": \"^5.0.3\",
         \"mobx-react\": \"^5.2.5\",
         \"react\": \"^16.4.2\",
         \"react-dom\": \"^16.4.2\",
-        \"@alvin/ui\": \"^1.0.0\"
+        \"react-emotion\": \"^9.2.6\"
     "
 		mkdir $WORKDIR
 		mkdir $WORKDIR/src
@@ -113,18 +118,19 @@ EndOfMessage
 cat > $WORKDIR/src/pages/PageA/components/ComponentA.tsx  << EndOfMessage 
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import { css } from 'emotion'
+
+const styles = {
+    h1: css\`
+        color: blue;
+    \`
+}
 
 export const ComponentA = observer(({ text }) => (
-	<h1>{text}</h1>
+	<h1 className={styles.h1}>{text}</h1>
 ));
 
 export default ComponentA;
-EndOfMessage
-
-cat > $WORKDIR/src/pages/PageA/components/ComponentA.css  << EndOfMessage 
-h1 {
-	color: blue;
-}
 EndOfMessage
 
 cat > $WORKDIR/src/pages/PageA/interfaces/IComponentStoreA.ts  << EndOfMessage 
