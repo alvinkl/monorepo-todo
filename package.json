@@ -1,6 +1,11 @@
 {
   "name": "monorepo-new-todo",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=8.1.1",
+    "npm": ">=5.4.2",
+    "yarn": ">=1.5.1"
+  },
   "description": "",
   "main": "index.js",
   "private": true,
@@ -15,7 +20,8 @@
     "clean": "better-npm-run clean:packages",
     "watch": "better-npm-run build:packages",
     "build:declaration": "better-npm-run build:typescript-declaration",
-    "dev": "better-npm-run clean:packages && better-npm-run watch:development"
+    "dev": "better-npm-run clean:packages && better-npm-run watch:development",
+    "commit": "git-cz"
   },
   "betterScripts": {
     "build:packages": {
@@ -35,6 +41,18 @@
         "NODE_ENV": "development"
       },
       "command": "concurrently  \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
+    },
+    "lint-test": {
+      "env": {
+        "NODE_ENV": "test"
+      },
+      "command": "yarn lint && yarn test"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "better-npm-run lint-test",
+      "post-merge": "better-npm-run clean:packages"
     }
   },
   "keywords": [],
@@ -64,8 +82,10 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-typescript": "^0.12.0",
+    "git-cz": "1.7.1",
+    "husky": "^1.0.0-rc.13",
     "jest": "^23.5.0",
-    "lerna": "^3.0.6",
+    "lerna": "3.0.6",
     "next": "^6.1.1",
     "prettier": "^1.14.2",
     "regenerator-runtime": "^0.12.1",
