@@ -14,11 +14,11 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "lint": "eslint --ignore-path .eslintignore \"packages/**/src/**\" && tsc --noEmit",
+    "lint": "better-npm-run lint-test",
     "test": "jest --no-cache",
     "build:babel": "better-npm-run build:packages",
     "clean": "better-npm-run clean:packages",
-    "watch": "better-npm-run build:packages",
+    "watch": "better-npm-run build:packages --watch",
     "build:declaration": "better-npm-run build:typescript-declaration",
     "dev": "better-npm-run clean:packages && better-npm-run watch:development",
     "commit": "git-cz"
@@ -28,7 +28,7 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel --watch src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
+      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
@@ -46,7 +46,7 @@
       "env": {
         "NODE_ENV": "test"
       },
-      "command": "yarn lint && yarn test"
+      "command": "yarn clean && yarn build:babel && eslint --ignore-path .eslintignore \"packages/**/src/**\" && tsc --noEmit && yarn test"
     }
   },
   "husky": {
