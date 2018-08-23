@@ -1,6 +1,7 @@
-import * as Todo from './Todo';
+import * as f from './fetch';
 
-import * as Memo from './Memo';
+export const fetch = f;
 
-export { Todo };
-export { Memo };
+import * as s from './services';
+
+export const services = s;

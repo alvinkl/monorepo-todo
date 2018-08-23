@@ -1,28 +1,24 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
-import { IComponentStoreA } from './interfaces/IComponentStoreA';
+import { MemoStore } from './store/MemoStore';
 
 import ComponentA from './components/ComponentA';
 
-interface IComponentProps {
-  store: IComponentStoreA;
-}
-
 @observer
-export class Memo extends React.Component<IComponentProps, {}> {
-  onSubmit = (text: string) => {
-    const {
-      store: { changeText },
-    } = this.props;
+export class Memo extends React.Component {
+  @observable
+  store = new MemoStore('Hello');
 
-    changeText(text);
+  onSubmit = (text: string) => {
+    this.store.changeText(text);
   };
 
   render() {
     const {
       store: { text },
-    } = this.props;
+    } = this;
 
     return (
       <div>

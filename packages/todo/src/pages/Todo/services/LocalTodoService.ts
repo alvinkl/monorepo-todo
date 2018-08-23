@@ -1,27 +1,34 @@
+import { services } from '@alvin/datasource';
+
 import ITodoService from '../interfaces/ITodoService';
-import { TodoListItemStore } from '../stores/TodoListItemStore';
+import { TodoListItemStore } from '../store/TodoListItemStore';
 
 export class LocalTodoService implements ITodoService {
-  private key: string = 'todos';
+  localStorage: services.LocalStorage;
+
+  constructor(key: string) {
+    this.localStorage = new services.LocalStorage(key);
+  }
 
   addTodo(todo: TodoListItemStore) {
     const object = todo.current;
     const items = this.getTodos();
 
     items.push(object);
-    localStorage.setItem(this.key, JSON.stringify(items));
+
+    this.localStorage.addItem(items);
   }
 
   saveTodos(todos: TodoListItemStore[]) {
     const objects = todos.map(obj => obj.current);
-    const str = JSON.stringify(objects);
 
-    localStorage.setItem(this.key, str);
+    this.localStorage.addItem(objects);
+
+    // localStorage.setItem(this.key, str);
   }
 
   getTodos(): TodoListItemStore[] {
-    const storageValue: string = localStorage.getItem(this.key) || '';
-    const obj = (JSON.parse(storageValue) as any[]) || [];
+    const obj = this.localStorage.getItems() || [];
 
     return obj.map(json => TodoListItemStore.init(json));
   }

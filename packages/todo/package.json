@@ -11,21 +11,23 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+    "@alvin/datasource": "^1.0.0",
     "@alvin/ui": "^1.0.0",
+    "emotion": "^9.2.6",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-emotion": "^9.2.6"
   },
   "devDependencies": {
+    "@alvin/datasource": "^1.0.0",
     "@alvin/ui": "^1.0.0",
+    "emotion": "^9.2.6",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
-  },
-  "dependencies": {
-    "emotion": "^9.2.6",
+    "react-dom": "^16.4.2",
     "react-emotion": "^9.2.6"
   }
 }

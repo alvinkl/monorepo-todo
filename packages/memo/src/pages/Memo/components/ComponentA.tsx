@@ -8,6 +8,6 @@ export const ComponentA = observer(({ text, onSubmit }) => (
     <TextBox onSubmit={onSubmit} />
     <h1>{text}</h1>
   </div>
-  ));
+));
 
 export default ComponentA;
