@@ -5,15 +5,18 @@ export class LocalStorageService {
     this.key = key;
   }
 
-  addItem = (item: any, key?: string) => {
-    localStorage.setItem(key || this.key, JSON.stringify(item));
+  addItem = (item: any, key?: any) => {
+    localStorage.setItem(
+      key || this.key,
+      typeof item !== 'string' ? JSON.stringify(item) : item
+    );
   };
 
-  getItems = (key?: string): any[] => {
-    const storageValue: string = localStorage.getItem(key || this.key) || '';
-    const obj: string = JSON.parse(storageValue) || '';
+  getItems = (key?: string): any => {
+    const storageValue: any = localStorage.getItem(key || this.key) || null;
+    const obj: any = storageValue ? JSON.parse(storageValue) : null;
 
-    return JSON.parse(obj);
+    return obj;
   };
 }
 

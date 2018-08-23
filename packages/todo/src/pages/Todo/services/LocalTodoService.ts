@@ -18,15 +18,13 @@ export class LocalTodoService implements ITodoService {
 
     items.push(object);
 
-    this.localStorage.addItem(JSON.stringify(items));
-    // localStorage.setItem(this.key, JSON.stringify(items));
+    this.localStorage.addItem(items);
   }
 
   saveTodos(todos: TodoListItemStore[]) {
     const objects = todos.map(obj => obj.current);
-    const str = JSON.stringify(objects);
 
-    this.localStorage.addItem(str);
+    this.localStorage.addItem(objects);
 
     // localStorage.setItem(this.key, str);
   }

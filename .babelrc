@@ -40,5 +40,11 @@
                 "@babel/proposal-object-rest-spread"
             ]
         }
-    }
+    },
+    "ignore": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.test.js",
+        "**/*.test.jsx"
+    ]
 }

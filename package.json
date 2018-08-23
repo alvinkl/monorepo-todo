@@ -28,7 +28,7 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel --watch src --ignore test.jsx -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\" --copy-files"
+      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel --watch src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
