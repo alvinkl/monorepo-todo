@@ -8,8 +8,6 @@ export class LocalTodoService implements ITodoService {
 
   constructor(key: string) {
     this.localStorage = new services.LocalStorage(key);
-
-    console.log(this.localStorage);
   }
 
   addTodo(todo: TodoListItemStore) {

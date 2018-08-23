@@ -15,19 +15,22 @@ enum ScreenType {
   Fetched,
 }
 
+interface IPropsStore {
+  store?: TodoContainerStore;
+}
+
 @observer
-export class TodoContainer extends React.Component {
+export class TodoContainer extends React.Component<IPropsStore, {}> {
   @observable
   activeScreen: ScreenType = ScreenType.Active;
 
   @observable
-  store = new TodoContainerStore(new LocalTodoService('todos'));
+  store =
+    this.props.store || new TodoContainerStore(new LocalTodoService('todos'));
 
   componentDidMount() {
     this.store.loadItems();
     this.store.fetchTodos();
-
-    console.log(this.store);
 
     window.onbeforeunload = () => this.beforeUnload();
   }

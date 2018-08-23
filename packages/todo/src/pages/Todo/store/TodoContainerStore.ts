@@ -57,7 +57,6 @@ export class TodoContainerStore {
 
   async fetchTodos() {
     const { error, data } = await fetch.fetchTodo();
-    console.log('error', error, data);
     if (error) {
       this.setError(error);
       return;
