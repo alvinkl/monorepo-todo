@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { observable, action } from 'mobx';
+import * as React from 'react';
 
 import { TextBox } from '@alvin/ui';
+import { LocalTodoService } from './services/LocalTodoService';
 import { TodoContainerStore } from './store/TodoContainerStore';
 import { TodoListItemStore } from './store/TodoListItemStore';
-import { LocalTodoService } from './services/LocalTodoService';
 
 import TodoListView from './components/TodoListView';
 
@@ -53,10 +53,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
   }
 
   render() {
-    const {
-      store,
-      store: { activeItems, completedItems, fetchedItems },
-    } = this;
+    const { activeItems, completedItems, fetchedItems, error } = this.store;
 
     return (
       <div className="container td-container">
@@ -71,9 +68,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
-                onClick={() => {
-                  this.setActiveScreen(ScreenType.Active);
-                }}
+                onClick={this.setActiveScreen.bind(this, ScreenType.Active)}
                 id="nav-active-tab"
                 data-toggle="tab"
                 href="#"
@@ -89,9 +84,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
-                onClick={() => {
-                  this.setActiveScreen(ScreenType.Completed);
-                }}
+                onClick={this.setActiveScreen.bind(this, ScreenType.Completed)}
                 id="nav-completed-tab"
                 data-toggle="tab"
                 href="#"
@@ -107,9 +100,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
-                onClick={() => {
-                  this.setActiveScreen(ScreenType.Fetched);
-                }}
+                onClick={this.setActiveScreen.bind(this, ScreenType.Fetched)}
                 id="nav-completed-tab"
                 data-toggle="tab"
                 href="#"
@@ -134,7 +125,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
             >
               <TodoListView
                 key="active_list"
-                todos={store ? activeItems : []}
+                todos={this.store ? activeItems : []}
                 onChange={this.onChangeComplete}
               />
             </div>
@@ -150,7 +141,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
             >
               <TodoListView
                 key="complete_list"
-                todos={store ? completedItems : []}
+                todos={this.store ? completedItems : []}
                 onChange={this.onChangeComplete}
               />
             </div>
@@ -166,9 +157,9 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
             >
               <TodoListView
                 key="complete_list"
-                todos={store ? fetchedItems : []}
+                todos={this.store ? fetchedItems : []}
                 onChange={this.onChangeComplete}
-                error={store.error}
+                error={error}
               />
             </div>
           </div>

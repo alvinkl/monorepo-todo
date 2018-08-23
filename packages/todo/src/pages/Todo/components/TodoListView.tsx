@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { observer, inject } from 'mobx-react';
 import { css } from 'emotion';
+import { inject, observer } from 'mobx-react';
+import * as React from 'react';
 
 import TodoListItemStore from '../store/TodoListItemStore';
 

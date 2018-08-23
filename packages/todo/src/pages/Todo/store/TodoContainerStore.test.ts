@@ -1,6 +1,5 @@
-import { TodoContainerStore } from './TodoContainerStore';
-import { TodoListItemStore } from './TodoListItemStore';
 import ITodoService from '../interfaces/ITodoService';
+import { TodoContainerStore } from './TodoContainerStore';
 
 class MockService implements ITodoService {
   addTodo() {}

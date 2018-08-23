@@ -1,6 +1,6 @@
 import { css } from 'emotion';
-import * as React from 'react';
 import { observer } from 'mobx-react';
+import * as React from 'react';
 
 const style = css`
   padding: 4px 0px;

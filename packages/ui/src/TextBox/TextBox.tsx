@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-interface PropsTypes {
-  onSubmit: Function;
+interface IPropsTypes {
+  onSubmit: (text: string) => void;
 }
 
-export const TextBox = ({ onSubmit }: PropsTypes) => {
+export const TextBox = ({ onSubmit }: IPropsTypes) => {
   let textInput: HTMLInputElement;
+
+  const onClick = () => {
+    onSubmit(textInput.value);
+    textInput.value = '';
+  };
 
   return (
     <div className="input-group mb-3">
@@ -19,14 +24,7 @@ export const TextBox = ({ onSubmit }: PropsTypes) => {
       />
 
       <div className="input-group-append">
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => {
-            onSubmit(textInput.value);
-            textInput.value = '';
-          }}
-        >
+        <button className="btn btn-primary" type="button" onClick={onClick}>
           Submit
         </button>
       </div>

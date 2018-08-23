@@ -1,27 +1,28 @@
-import to from '../../utils/asyncAwait';
+import { default as to } from '../../utils/asyncAwait';
 
-export interface TodoTypes {
+export interface ITodoTypes {
   title: string;
   id: number;
   completed: boolean;
   userId: number;
 }
 
-export interface ReturnPromise {
+export interface IReturnPromise {
   error?: Error;
-  data?: TodoTypes[];
+  data?: ITodoTypes[];
 }
 
-export const fetchTodo = async (): Promise<ReturnPromise> => {
+export const fetchTodo = async (): Promise<IReturnPromise> => {
   const { error, response } = await to(
     fetch('https://jsonplaceholder.typicode.com/todos')
   );
-  if (error)
+  if (error) {
     return Promise.resolve({
       error,
     });
+  }
 
-  const data: TodoTypes[] = await response!.json();
+  const data: ITodoTypes[] = await response!.json();
 
   return Promise.resolve({
     data,

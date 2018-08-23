@@ -1,12 +1,11 @@
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 
-import { TodoContainerStore } from './store/TodoContainerStore';
 import ITodoService from './interfaces/ITodoService';
+import { TodoContainerStore } from './store/TodoContainerStore';
 
-import Todo from './index';
 import TodoListView from './components/TodoListView';
-import TodoListItem from './components/TodoListItem';
+import { default as Todo } from './index';
 
 class MockService implements ITodoService {
   addTodo() {}

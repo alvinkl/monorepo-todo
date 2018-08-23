@@ -1,8 +1,8 @@
-import { observable, action, computed, configure } from 'mobx';
 import { fetch } from '@alvin/datasource';
+import { action, computed, configure, observable } from 'mobx';
 
-import { TodoListItemStore } from './TodoListItemStore';
 import ITodoService from '../interfaces/ITodoService';
+import { TodoListItemStore } from './TodoListItemStore';
 
 configure({
   enforceActions: true,
@@ -28,7 +28,7 @@ export class TodoContainerStore {
   get activeItems() {
     return this.items
       .filter(object => !object.isCompleted)
-      .sort((__dirname, secondObject) => secondObject.id);
+      .sort((_, secondObject) => secondObject.id);
   }
 
   @computed

@@ -1,10 +1,22 @@
-import { observable, action, configure } from 'mobx';
+import { action, configure, observable } from 'mobx';
 
 configure({
   enforceActions: true,
 });
 
 export class TodoListItemStore {
+  get current(): any {
+    return {
+      id: this.id,
+      isCompleted: this.isCompleted,
+      text: this.text,
+    };
+  }
+
+  @action
+  static init(json: any): TodoListItemStore {
+    return new TodoListItemStore(json.text, json.id, json.isCompleted);
+  }
   @observable
   id: number;
 
@@ -25,21 +37,8 @@ export class TodoListItemStore {
   }
 
   @action
-  public static init(json: any): TodoListItemStore {
-    return new TodoListItemStore(json.text, json.id, json.isCompleted);
-  }
-
-  @action
   setCompleteness(completed: boolean) {
     this.isCompleted = completed;
-  }
-
-  get current(): any {
-    return {
-      id: this.id,
-      text: this.text,
-      isCompleted: this.isCompleted,
-    };
   }
 }
 

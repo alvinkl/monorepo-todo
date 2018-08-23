@@ -1,1 +1,1 @@
-export { default as Memo } from "./pages/Memo";
+export { default as Memo } from './pages/Memo';

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+import * as React from 'react';
 
 import { MemoStore } from './store/MemoStore';
 
@@ -16,9 +16,7 @@ export class Memo extends React.Component {
   };
 
   render() {
-    const {
-      store: { text },
-    } = this;
+    const { text } = this.store;
 
     return (
       <div>
