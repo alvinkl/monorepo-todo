@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import { css } from 'emotion';
 
-import ITodoListItemStore from '../interfaces/ITodoListItemStore';
+import TodoListItemStore from '../store/TodoListItemStore';
 
 import TodoListItem from './TodoListItem';
 
@@ -18,7 +18,7 @@ export const TodoListView = inject('todos')(
   observer(({ todos, error, onChange }) => (
     <ul className={style}>
       {!error &&
-        todos.map((d: ITodoListItemStore) => (
+        todos.map((d: TodoListItemStore) => (
           <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
         ))}
 

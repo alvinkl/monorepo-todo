@@ -2,7 +2,7 @@ import { observable, action, computed, configure } from 'mobx';
 
 import { TodoListItemStore } from './TodoListItemStore';
 import ITodoService from '../interfaces/ITodoService';
-import fetchTodo from '../fetch/fetchTodo';
+import { fetch } from '@alvin/datasource';
 
 configure({
   enforceActions: true,
@@ -56,7 +56,7 @@ export class TodoContainerStore {
   }
 
   async fetchTodos() {
-    const { error, data } = await fetchTodo();
+    const { error, data } = await fetch.fetchTodo();
     console.log('error', error, data);
     if (error) {
       this.setError(error);

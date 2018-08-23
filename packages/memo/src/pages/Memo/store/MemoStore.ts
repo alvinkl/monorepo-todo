@@ -1,4 +1,4 @@
-import { observable, configure, action } from "mobx";
+import { observable, configure, action } from 'mobx';
 
 configure({
   enforceActions: true,
@@ -6,7 +6,7 @@ configure({
 
 export class MemoStore {
   @observable
-  text: string = "";
+  text: string = '';
 
   constructor(text: string) {
     this.text = text;

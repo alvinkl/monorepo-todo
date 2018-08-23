@@ -80,7 +80,9 @@ elif [ "$PACKAGE_TYPE" == "feature" ]
 		mkdir $WORKDIR/src/pages
     mkdir $WORKDIR/src/pages/PageA
     mkdir $WORKDIR/src/pages/PageA/components
-    mkdir $WORKDIR/src/pages/PageA/interfaces
+    mkdir $WORKDIR/src/pages/PageA/interface
+    mkdir $WORKDIR/src/pages/PageA/service
+    mkdir $WORKDIR/src/pages/PageA/store
 
 cat > $WORKDIR/src/pages/PageA/index.tsx  << EndOfMessage 
 import * as React from 'react';
@@ -157,20 +159,17 @@ cat > $WORKDIR/package.json << EndOfMessage
 }
 EndOfMessage
 
-	WORKDIR=packages/datasource
-    mkdir $WORKDIR/src/$PACKAGE_NAME/interfaces
-    mkdir $WORKDIR/src/$PACKAGE_NAME/services
-    mkdir $WORKDIR/src/$PACKAGE_NAME/stores
-
-cat > $WORKDIR/src/$PACKAGE_NAME/interfaces/interface.ts  << EndOfMessage 
-export default interface Interface {
+cat > $WORKDIR/src/pages/PageA/interface/interface.ts  << EndOfMessage 
+export interface Interface {
 	addThing(thing: string);
 	getThing(): string;
 }
+
+export default Interface
 EndOfMessage
 
-cat > $WORKDIR/src/$PACKAGE_NAME/services/services.ts  << EndOfMessage 
-import Interface from '../../interfaces/$PACKAGE_NAME/interface'
+cat > $WORKDIR/src/pages/PageA/service/service.ts  << EndOfMessage 
+import Interface from '../interface/interface'
 
 export class Service implements Interface {
 	addThing(thing: string) {
@@ -185,9 +184,9 @@ export class Service implements Interface {
 export default Service;
 EndOfMessage
 
-cat > $WORKDIR/src/$PACKAGE_NAME/stores/store.ts  << EndOfMessage 
+cat > $WORKDIR/src/pages/PageA/store/store.ts  << EndOfMessage 
 import { observable, action, computed, configure } from 'mobx'
-import Interface from '../../interfaces/$PACKAGE_NAME/interface'
+import Interface from '../interface/interface'
 
 configure({
 	enforceActions: true
@@ -212,65 +211,6 @@ export class Store {
 export default Store
 EndOfMessage
 	
-
-elif [ "$PACKAGE_TYPE" == "data" ]
-    then
-
-	WORKDIR=packages/datasource
-    mkdir $WORKDIR/src/$PACKAGE_NAME/interfaces
-    mkdir $WORKDIR/src/$PACKAGE_NAME/services
-    mkdir $WORKDIR/src/$PACKAGE_NAME/stores
-
-cat > $WORKDIR/src/$PACKAGE_NAME/interfaces/interface.ts  << EndOfMessage 
-export default interface Interface {
-	addThing(thing: string);
-	getThing(): string;
-}
-EndOfMessage
-
-cat > $WORKDIR/src/$PACKAGE_NAME/services/services.ts  << EndOfMessage 
-import Interface from '../../interfaces/$PACKAGE_NAME/interface'
-
-export class Service implements Interface {
-	addThing(thing: string) {
-		// implementation
-	}
-
-	getThing() {
-		return 'implementation';
-	}
-}
-
-export default Service;
-EndOfMessage
-
-cat > $WORKDIR/src/$PACKAGE_NAME/stores/store.ts  << EndOfMessage 
-import { observable, action, computed, configure } from 'mobx'
-import Interface from '../../interfaces/$PACKAGE_NAME/interface'
-
-configure({
-	enforceActions: true
-});
-
-export class Store {
-	@observable
-	thing: string = '';
-
-	@computed
-	get things() {
-		const arr = Array.apply(null, { length: 5 }).map(a => a = this.string);
-		return arr;
-	}
-
-	@action
-	setThing(thing: string) {
-		this.thing = thing
-	}
-}
-
-export default Store
-EndOfMessage
-
 else
     echo "Please input Package Type"
     exit 1;

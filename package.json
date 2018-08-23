@@ -13,7 +13,7 @@
     "test": "jest",
     "build:babel": "better-npm-run build:packages",
     "clean": "better-npm-run clean:packages",
-    "watch": "better-npm-run build:packages -w",
+    "watch": "better-npm-run build:packages",
     "build:declaration": "better-npm-run build:typescript-declaration",
     "dev": "better-npm-run clean:packages && better-npm-run watch:development"
   },
@@ -22,7 +22,7 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src --ignore test.jsx -d lib --config-file ../../._babelrc --extensions \".ts,.tsx,.js,.jsx\" --copy-files"
+      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel --watch src --ignore test.jsx -d lib --config-file ../../._babelrc --extensions \".ts,.tsx,.js,.jsx\" --copy-files"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
