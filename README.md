@@ -29,7 +29,7 @@ $ yarn dev
 │   ├── ui (shared component package - no dependency to other, storybook belongs here)
 │   ├── datasources (stores for all the dependency, everything related to fetching and logic, maybe should split in the future)
 │   ├── main-app (next js runs here, to orchestrate between feature packages (like r***s, s**, but in this case Todo feature, this package allowed to import the datasource)
-│   ├── *features*(this case Todo, this package *MUST NOT* dependent to datasources, just use interfaces to mimic the store that will be passed by main app)
+│   ├── *features*(this case Todo, this package may import datasource.. Store lives here)
 └── root directory (for building the packages, should be only devDependencies like babel, loaders, webpack, etc)
 ```
 
