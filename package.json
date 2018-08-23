@@ -57,6 +57,7 @@
   },
   "jest": {
     "rootDir": ".",
+    "verbose": true,
     "globals": {
       "ts-jest": {
         "useBabelrc": true
