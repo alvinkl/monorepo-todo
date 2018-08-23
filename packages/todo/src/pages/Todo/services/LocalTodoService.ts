@@ -1,15 +1,13 @@
+import { services } from '@alvin/datasource';
+
 import ITodoService from '../interfaces/ITodoService';
 import { TodoListItemStore } from '../store/TodoListItemStore';
 
-import { services } from '@alvin/datasource';
-
-const { LocalStorage } = services;
-
 export class LocalTodoService implements ITodoService {
-  localStorage: LocalStorage;
+  localStorage: services.LocalStorage;
 
   constructor(key: string) {
-    this.localStorage = new LocalStorage(key);
+    this.localStorage = new services.LocalStorage(key);
 
     console.log(this.localStorage);
   }

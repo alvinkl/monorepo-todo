@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+    "@alvin/datasource": "^1.0.0",
     "@alvin/ui": "^1.0.0",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",
@@ -18,6 +19,7 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "@alvin/datasource": "^1.0.0",
     "@alvin/ui": "^1.0.0",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",

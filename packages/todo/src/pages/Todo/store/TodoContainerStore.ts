@@ -1,8 +1,8 @@
 import { observable, action, computed, configure } from 'mobx';
+import { fetch } from '@alvin/datasource';
 
 import { TodoListItemStore } from './TodoListItemStore';
 import ITodoService from '../interfaces/ITodoService';
-import { fetch } from '@alvin/datasource';
 
 configure({
   enforceActions: true,

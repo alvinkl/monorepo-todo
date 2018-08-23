@@ -32,10 +32,6 @@ export class TodoContainer extends React.Component {
     window.onbeforeunload = () => this.beforeUnload();
   }
 
-  beforeUnload() {
-    this.store.saveItems();
-  }
-
   @action
   setActiveScreen = (activeScreen: number) => {
     this.activeScreen = activeScreen;
@@ -48,6 +44,10 @@ export class TodoContainer extends React.Component {
   onSubmitNewTodo = (text: string) => {
     this.store.addItem(text);
   };
+
+  beforeUnload() {
+    this.store.saveItems();
+  }
 
   render() {
     const {
