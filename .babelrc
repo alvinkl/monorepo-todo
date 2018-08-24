@@ -1,4 +1,38 @@
 {
+    "presets": [
+        "@babel/typescript",
+        [
+            "@babel/preset-env",
+            {
+                "shippedProposals": true,
+                "targets": {
+                    "esmodules": true
+                }
+            }
+        ],
+        "@babel/react"
+    ],
+    "plugins": [
+        ["emotion", { "hoist": true }],
+        ["module-resolver", {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            "symlinks": true,
+            "alias": {
+                "mobx": "mobx"
+            }
+        }],
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/proposal-class-properties", { "loose": true }],
+        "@babel/proposal-object-rest-spread"
+    ],
+    
+    "ignore": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.test.js",
+        "**/*.test.jsx"
+    ],
+
     "env": {
         "test": {
             "presets": [
@@ -11,40 +45,6 @@
                 ["@babel/proposal-class-properties", { "loose": true }],
                 "@babel/proposal-object-rest-spread"
             ]
-        },
-        "bundles": {
-            "presets": [
-                "@babel/typescript",
-                [
-                    "@babel/preset-env",
-                    {
-                        "shippedProposals": true,
-                        "targets": {
-                            "esmodules": true
-                        }
-                    }
-                ],
-                "@babel/react"
-            ],
-            "plugins": [
-                ["emotion", { "hoist": true }],
-                ["module-resolver", {
-                    "extensions": [".js", ".jsx", ".ts", ".tsx"],
-                    "symlinks": true,
-                    "alias": {
-                        "mobx": "mobx"
-                    }
-                }],
-                ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                ["@babel/proposal-class-properties", { "loose": true }],
-                "@babel/proposal-object-rest-spread"
-            ]
         }
-    },
-    "ignore": [
-        "**/*.test.ts",
-        "**/*.test.tsx",
-        "**/*.test.js",
-        "**/*.test.jsx"
-    ]
+    }
 }
