@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import { default as Document, Head, Main, NextScript } from 'next/document';
 
 // import "../static/css/style.css";
 
