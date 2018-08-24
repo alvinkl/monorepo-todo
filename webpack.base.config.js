@@ -20,11 +20,13 @@ const commonConfig = {
   },
 
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'awesome-typescript-loader',
+        use: {
+          loader: 'awesome-typescript-loader',
+        },
       },
     ],
   },
@@ -44,6 +46,7 @@ const commonConfig = {
   output: {
     path: path.resolve('./', 'lib'),
     filename: 'package.build.js',
+    library: '',
     libraryTarget: 'commonjs',
   },
 };
