@@ -48,6 +48,9 @@ const commonConfig = {
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
     new PeerDepsExternalsPlugin(),
     new UglifyJSPlugin({
       parallel: true,

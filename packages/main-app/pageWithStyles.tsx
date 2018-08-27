@@ -41,7 +41,6 @@ export const pageWithStyles = WrappedComponent => {
 
     render() {
       const { css = [] } = this.props;
-      console.log(css);
 
       return (
         <div>
