@@ -1,4 +1,4 @@
-import { css } from 'emotion';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -6,19 +6,11 @@ import TodoListItemStore from '../store/TodoListItemStore';
 
 import TodoListItem from './TodoListItem';
 
-const style = {
-  ul: css`
-    padding: 10px;
-    bottom: 1px solid #dee2e6;
-    border-top: none;
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-  `,
-};
+import * as style from './todoListView.css';
 
 export const TodoListView = inject('todos')(
   observer(({ todos, error, onChange }) => (
-    <ul className={style.ul}>
+    <ul className={style.list}>
       {!error &&
         todos.map((d: TodoListItemStore) => (
           <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
@@ -29,4 +21,4 @@ export const TodoListView = inject('todos')(
   ))
 );
 
-export default TodoListView;
+export default withStyles(style)(TodoListView);

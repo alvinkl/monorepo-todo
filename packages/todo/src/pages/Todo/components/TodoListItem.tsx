@@ -1,18 +1,11 @@
-import { css } from 'emotion';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-const style = css`
-  padding: 4px 0px;
-  border-bottom: 1px solid #dee2e6;
-
-  &:last-of-type {
-    border: none;
-  }
-`;
+import * as style from './todoListItem.css';
 
 export const TodoListItem = observer(({ text, isCompleted, ...args }) => (
-  <div className={style}>
+  <div className={style.items}>
     <div className="row">
       <div className="col-10">
         <label className="form-check-label">{text}</label>
@@ -29,4 +22,4 @@ export const TodoListItem = observer(({ text, isCompleted, ...args }) => (
   </div>
 ));
 
-export default TodoListItem;
+export default withStyles(style)(TodoListItem);

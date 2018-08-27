@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { TextBox } from '@alvin/ui';
+import { Text, TextBox } from '@alvin/ui';
 import { LocalTodoService } from './services/LocalTodoService';
 import { TodoContainerStore } from './store/TodoContainerStore';
 import { TodoListItemStore } from './store/TodoListItemStore';
@@ -58,6 +58,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
     return (
       <div className="container td-container">
         <TextBox onSubmit={this.onSubmitNewTodo} />
+        <Text />
 
         <div>
           <nav>
