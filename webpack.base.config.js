@@ -28,10 +28,29 @@ const commonConfig = {
           loader: 'awesome-typescript-loader',
         },
       },
+      {
+        test: /\.css$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: true,
+              // sourceMap: !!dev,
+              // minimize: !dev,
+              // localIdentName: '[name]-[local]-[hash:base64:5]',
+            },
+          },
+        ],
+      },
     ],
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
     new PeerDepsExternalsPlugin(),
     new UglifyJSPlugin({
       parallel: true,

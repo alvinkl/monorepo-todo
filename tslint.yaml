@@ -37,3 +37,5 @@ rules:
         - check-format
         - allow-pascal-case
     jsx-no-multiline-js: false
+    no-bitwise: false
+    ter-arrow-parens: false
