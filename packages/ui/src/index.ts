@@ -1,3 +1,3 @@
-export { default as Button } from './Button/Button';
-export { default as Text } from './Text/Text';
-export { default as TextBox } from './TextBox/TextBox';
+export { default as Button } from './components/Button/Button';
+export { default as Text } from './components/Text/Text';
+export { default as TextBox } from './components/TextBox/TextBox';

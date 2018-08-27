@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Museo';
+  src: url('./fonts/MuseoSansRounded-100.otf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Museo';
+  src: url('./fonts/MuseoSansRounded-300.otf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Museo';
+  src: url('./fonts/MuseoSansRounded-500.otf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Museo';
+  src: url('./fonts/MuseoSansRounded-700.otf');
+  font-weight: 700;
+}
+
+html * {
+  font-weight: 300;
+  font-family: 'Museo', 'Helvetica Neue', 'Helvetica', Arial, 'sans-serif';
+  color: #484848;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4c565c;
+}
+
+h4 {
+  font-size: 13px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+h6 {
+  font-size: 12;
+  color: #4c565c;
+}

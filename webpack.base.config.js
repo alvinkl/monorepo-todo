@@ -23,7 +23,7 @@ const commonConfig = {
     loaders: [
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /\.story.*/],
         use: {
           loader: 'awesome-typescript-loader',
         },

@@ -47,7 +47,7 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently  \"yarn watch\" \"lerna run --scope @alvin/main-app dev\""
+      "command": "concurrently  \"yarn watch\" \"lerna run --scope @alvin/main-app dev\" \"lerna run --scope @alvin/ui story\" "
     },
     "lint-test": {
       "env": {
