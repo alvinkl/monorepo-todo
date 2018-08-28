@@ -27,7 +27,6 @@ const webpackConfig = function(config, { dev }) {
 };
 
 const webpackDevMiddlewareConfig = config => {
-  console.log(config);
   return config;
 };
 

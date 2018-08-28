@@ -1,4 +1,4 @@
-import { fetchTodo, ITodoTypes } from './todo/fetchTodo';
+import { fetchTodo, ITodoTypes } from './fetchTodo';
 
 describe('[Todo] fetchTodo', () => {
   const expectedResult: ITodoTypes[] = [

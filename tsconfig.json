@@ -2,7 +2,7 @@
     "compileOnSave": false,
 
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
         "jsx": "react",
@@ -29,6 +29,10 @@
         ],
         "skipLibCheck": true,
 
+
+        "typeRoots": [
+            "node_modules/@types", "./@types"
+        ],
         "types": [
             "jest"
         ],

@@ -4,7 +4,10 @@
     "description": "",
     "main": "index.js",
     "types": "lib/index.d.ts",
-    "scripts": {},
+    "scripts": {
+        "build": "webpack",
+        "watch": "webpack --watch"
+    },
     "publishConfig": {
         "access": "public"
     },

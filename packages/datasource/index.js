@@ -1,3 +1,6 @@
 'use strict';
 
-module.exports = require('./lib/package.build.js');
+module.exports = {
+  todo: require('./lib/todo.build.js'),
+  shared: require('./lib/shared.build.js'),
+};

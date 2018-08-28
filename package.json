@@ -35,19 +35,25 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
+      "command": "lerna run --parallel --ignore @organizations/main-app build"
+    },
+    "build:packages-webpack-old": {
+      "env": {
+        "BABEL_ENV": "bundles"
+      },
       "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../webpack.base.config.js"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
     },
     "clean:packages": {
-      "command": "rm -rf packages/*/lib packages/*/.next"
+      "command": "rm -rf @types packages/*/lib packages/*/.next"
     },
     "watch:development": {
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently  \"yarn watch\" \"lerna run --scope @organizations/main-app dev\" \"lerna run --scope @organizations/ui story\" "
+      "command": "concurrently  \"lerna run --parallel --ignore @organizations/main-app watch\" \"lerna run --scope @organizations/main-app dev\" \"lerna run --scope @organizations/ui story\" "
     },
     "lint-test": {
       "env": {

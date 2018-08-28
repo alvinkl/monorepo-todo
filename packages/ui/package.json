@@ -5,7 +5,9 @@
   "main": "index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "story": "start-storybook -p 6006 -c .storybook -s ./src/assets/styles"
+    "story": "start-storybook -p 6006 -c .storybook -s ./src/assets/styles",
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "publishConfig": {
     "access": "public"

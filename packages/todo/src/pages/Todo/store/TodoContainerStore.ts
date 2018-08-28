@@ -1,4 +1,4 @@
-import { fetch } from '@organizations/datasource';
+import todo from '@organizations/datasource/todo';
 import { action, computed, configure, observable } from 'mobx';
 
 import ITodoService from '../interfaces/ITodoService';
@@ -7,6 +7,8 @@ import { TodoListItemStore } from './TodoListItemStore';
 configure({
   enforceActions: true,
 });
+
+console.log(todo);
 
 export class TodoContainerStore {
   @observable
@@ -56,17 +58,15 @@ export class TodoContainerStore {
   }
 
   async fetchTodos() {
-    const { error, data } = await fetch.fetchTodo();
-    if (error) {
-      this.setError(error);
-      return;
-    }
-
-    const dt = data!.map(
-      ({ title, id, completed }) => new TodoListItemStore(title, id, completed)
-    );
-
-    this.setFetchedItems(dt);
+    // const { error, data } = await f.fetchTodo();
+    // if (error) {
+    //   this.setError(error);
+    //   return;
+    // }
+    // const dt = data!.map(
+    //   ({ title, id, completed }) => new TodoListItemStore(title, id, completed)
+    // );
+    // this.setFetchedItems(dt);
   }
 
   @action

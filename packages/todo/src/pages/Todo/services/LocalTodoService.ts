@@ -1,13 +1,32 @@
-import { services } from '@organizations/datasource';
-
+// import * as datasource from '@organizations/datasource';
 import ITodoService from '../interfaces/ITodoService';
 import { TodoListItemStore } from '../store/TodoListItemStore';
 
+const LocalStorageService = (ksey: string) => {
+  const key = ksey;
+
+  return {
+    addItem: (item: any) => {
+      localStorage.setItem(
+        key,
+        typeof item !== 'string' ? JSON.stringify(item) : item
+      );
+    },
+
+    getItems: (): any => {
+      const storageValue: any = localStorage.getItem(key) || null;
+      const obj: any = storageValue ? JSON.parse(storageValue) : null;
+
+      return obj;
+    },
+  };
+};
+
 export class LocalTodoService implements ITodoService {
-  localStorage: services.LocalStorage;
+  localStorage: any;
 
   constructor(key: string) {
-    this.localStorage = new services.LocalStorage(key);
+    this.localStorage = LocalStorageService(key);
   }
 
   addTodo(todo: TodoListItemStore) {

@@ -1,4 +1,4 @@
-import { default as to } from '../../utils/asyncAwait';
+import { default as to } from '../../../utils/asyncAwait';
 
 export interface ITodoTypes {
   title: string;
