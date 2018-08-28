@@ -68,6 +68,8 @@ const commonConfig = {
     library: '',
     libraryTarget: 'commonjs',
   },
+
+  stats: 'minimal',
 };
 
 module.exports = commonConfig;
