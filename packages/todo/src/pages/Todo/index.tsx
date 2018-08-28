@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Text, TextBox } from '@alvin/ui';
+import { Text, TextBox } from '@organizations/ui';
 import { LocalTodoService } from './services/LocalTodoService';
 import { TodoContainerStore } from './store/TodoContainerStore';
 import { TodoListItemStore } from './store/TodoListItemStore';

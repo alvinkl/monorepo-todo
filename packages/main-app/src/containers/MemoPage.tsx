@@ -1,1 +1,1 @@
-export { Memo as default } from '@alvin/memo';
+export { Memo as default } from '@organizations/memo';

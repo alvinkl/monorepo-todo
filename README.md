@@ -40,7 +40,7 @@ we need to use yarn's way of adding dependency to workspace
 - for adding dependency to specific package (like ui package)
 ```bash
 $ yarn workspace <workspace-name> [add|remove] <dependency-name> <dependency2-name> [--dev|--save]
-$ yarn workspace @alvin/ui add react react-dom material-css --dev # go to this url (https://github.com/mobxjs/mobx/issues/1082#issuecomment-352409804) to read why use dev and peer Dependencies 
+$ yarn workspace @organizations/ui add react react-dom material-css --dev # go to this url (https://github.com/mobxjs/mobx/issues/1082#issuecomment-352409804) to read why use dev and peer Dependencies 
 ```
 - for adding dev dependency to root directory
 ```bash

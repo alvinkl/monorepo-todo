@@ -1,5 +1,5 @@
 {
-  "name": "@alvin/main-app",
+  "name": "@organizations/main-app",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -13,10 +13,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@alvin/datasource": "^1.0.0",
-    "@alvin/memo": "^1.0.0",
-    "@alvin/todo": "^1.0.0",
-    "@alvin/ui": "^1.0.0",
+    "@organizations/datasource": "^1.0.0",
+    "@organizations/memo": "^1.0.0",
+    "@organizations/todo": "^1.0.0",
+    "@organizations/ui": "^1.0.0",
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-typescript": "^1.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",

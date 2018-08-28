@@ -47,8 +47,8 @@ EndOfMessage
 elif [ "$PACKAGE_TYPE" == "feature" ]
     then
     PKG_JSON="
-        \"@alvin/datasource\": \"^1.0.0\",
-        \"@alvin/ui\": \"^1.0.0\",
+        \"@organizations/datasource\": \"^1.0.0\",
+        \"@organizations/ui\": \"^1.0.0\",
         \"emotion\": \"^9.2.6\",
         \"mobx\": \"^5.0.3\",
         \"mobx-react\": \"^5.2.5\",
@@ -126,7 +126,7 @@ EndOfMessage
 
 cat > $WORKDIR/package.json << EndOfMessage 
 {
-    "name": "@alvin/$PACKAGE_NAME",
+    "name": "@organizations/$PACKAGE_NAME",
     "version": "1.0.0",
     "description": "",
     "main": "lib/index.js",

@@ -1,4 +1,4 @@
-import { fetch } from '@alvin/datasource';
+import { fetch } from '@organizations/datasource';
 import { action, computed, configure, observable } from 'mobx';
 
 import ITodoService from '../interfaces/ITodoService';

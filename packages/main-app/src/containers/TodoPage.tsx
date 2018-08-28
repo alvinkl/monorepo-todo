@@ -1,1 +1,1 @@
-export { Todo as default } from '@alvin/todo';
+export { Todo as default } from '@organizations/todo';

@@ -1,5 +1,5 @@
 {
-    "name": "@alvin/memo",
+    "name": "@organizations/memo",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -11,8 +11,8 @@
     "author": "",
     "license": "ISC",
     "peerDependencies": {
-        "@alvin/datasource": "^1.0.0",
-        "@alvin/ui": "^1.0.0",
+        "@organizations/datasource": "^1.0.0",
+        "@organizations/ui": "^1.0.0",
         "mobx": "^5.0.3",
         "mobx-react": "^5.2.5",
         "isomorphic-style-loader": "^4.0.0",
@@ -20,8 +20,8 @@
         "react-dom": "^16.4.2"
     },
     "devDependencies": {
-        "@alvin/datasource": "^1.0.0",
-        "@alvin/ui": "^1.0.0",
+        "@organizations/datasource": "^1.0.0",
+        "@organizations/ui": "^1.0.0",
         "mobx": "^5.0.3",
         "mobx-react": "^5.2.5",
         "isomorphic-style-loader": "^4.0.0",

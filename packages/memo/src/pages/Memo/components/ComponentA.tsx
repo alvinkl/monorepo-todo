@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { TextBox } from '@alvin/ui';
+import { TextBox } from '@organizations/ui';
 
 export const ComponentA = observer(({ text, onSubmit }) => (
   <div>

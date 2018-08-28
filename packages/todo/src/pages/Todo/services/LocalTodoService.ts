@@ -1,4 +1,4 @@
-import { services } from '@alvin/datasource';
+import { services } from '@organizations/datasource';
 
 import ITodoService from '../interfaces/ITodoService';
 import { TodoListItemStore } from '../store/TodoListItemStore';

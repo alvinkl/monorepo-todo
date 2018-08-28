@@ -29,13 +29,13 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- babel src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
+      "command": "lerna exec --parallel --ignore @organizations/main-app -- babel src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
     },
     "build:packages-webpack": {
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @alvin/main-app -- webpack --config ../../webpack.base.config.js"
+      "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../webpack.base.config.js"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
@@ -47,7 +47,7 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently  \"yarn watch\" \"lerna run --scope @alvin/main-app dev\" \"lerna run --scope @alvin/ui story\" "
+      "command": "concurrently  \"yarn watch\" \"lerna run --scope @organizations/main-app dev\" \"lerna run --scope @organizations/ui story\" "
     },
     "lint-test": {
       "env": {
