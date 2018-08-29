@@ -1,13 +1,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import ITodoService from './interfaces/ITodoService';
+import { interfaces as I } from '@organizations/datasource/todo';
 import { TodoContainerStore } from './store/TodoContainerStore';
 
 import TodoListView from './components/TodoListView';
 import { default as Todo } from './index';
 
-class MockService implements ITodoService {
+class MockService implements I.ITodoService {
   addTodo() {}
   getTodos() {
     return [];
@@ -35,6 +35,6 @@ describe('Todo Page Component', () => {
     const wrapper = shallow(<Todo store={store} />);
 
     expect(wrapper.find('nav').length).toBe(1);
-    expect(wrapper.find(TodoListView).length).toBe(3);
+    expect(wrapper.find(TodoListView).length).toBe(2);
   });
 });

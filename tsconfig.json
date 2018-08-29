@@ -50,6 +50,7 @@
         "lib/**/*",
         "./packages/main-app/**",
         "**/*.test.tsx",
-        "**/*.test.ts"
+        "**/*.test.ts",
+        "__mock__/"
     ]
 }

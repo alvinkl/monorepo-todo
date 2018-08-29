@@ -1,7 +1,8 @@
-import ITodoListItemStore from './ITodoListItemStore';
+import { IUpdateParam } from '../fetch/updateTodo';
+import { ITodoListItem } from '../models';
 
 export default interface ITodoService {
-  addTodo(todo: ITodoListItemStore);
-  saveTodos(todos: ITodoListItemStore[]);
-  getTodos(): ITodoListItemStore[];
+  saveTodo: (todo: IUpdateParam) => any;
+  addTodo(todo: ITodoListItem);
+  getTodos(): ITodoListItem[] | Promise<ITodoListItem[]>;
 }

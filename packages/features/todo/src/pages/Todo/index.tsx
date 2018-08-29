@@ -5,14 +5,12 @@ import * as React from 'react';
 import { services as S } from '@organizations/datasource/todo';
 import { Text, TextBox } from '@organizations/ui';
 import { TodoContainerStore } from './store/TodoContainerStore';
-import { TodoListItemStore } from './store/TodoListItemStore';
 
 import TodoListView from './components/TodoListView';
 
 enum ScreenType {
   Active,
   Completed,
-  Fetched,
 }
 
 interface IPropsStore {
@@ -26,11 +24,11 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
 
   @observable
   store =
-    this.props.store || new TodoContainerStore(new S.LocalTodoService('todos'));
+    this.props.store ||
+    new TodoContainerStore(new S.OnlineTodoService('todos'));
 
   componentDidMount() {
     this.store.loadItems();
-    this.store.fetchTodos();
 
     window.onbeforeunload = () => this.beforeUnload();
   }
@@ -40,8 +38,8 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
     this.activeScreen = activeScreen;
   };
 
-  onChangeComplete = (todo: TodoListItemStore) => {
-    todo.setCompleteness(!todo.isCompleted);
+  onChangeComplete = (id: number) => {
+    this.store.updateItem(id);
   };
 
   onSubmitNewTodo = (text: string) => {
@@ -53,7 +51,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
   }
 
   render() {
-    const { activeItems, completedItems, fetchedItems, error } = this.store;
+    const { activeItems, completedItems } = this.store;
 
     return (
       <div className="container td-container">
@@ -95,22 +93,6 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
               >
                 Completed
               </a>
-              <a
-                className={
-                  this.activeScreen === ScreenType.Completed
-                    ? 'nav-item nav-link active'
-                    : 'nav-item nav-link'
-                }
-                onClick={this.setActiveScreen.bind(this, ScreenType.Fetched)}
-                id="nav-completed-tab"
-                data-toggle="tab"
-                href="#"
-                role="tab"
-                aria-controls="nav-completed"
-                aria-selected="false"
-              >
-                Fetched
-              </a>
             </div>
           </nav>
           <div className="tab-content" id="nav-tabContent">
@@ -144,23 +126,6 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
                 key="complete_list"
                 todos={this.store ? completedItems : []}
                 onChange={this.onChangeComplete}
-              />
-            </div>
-            <div
-              className={
-                this.activeScreen === ScreenType.Fetched
-                  ? 'tab-pane fade show active'
-                  : 'tab-pane fade'
-              }
-              id="nav-fetched"
-              role="tabpanel"
-              aria-labelledby="nav-fetched-tab"
-            >
-              <TodoListView
-                key="complete_list"
-                todos={this.store ? fetchedItems : []}
-                onChange={this.onChangeComplete}
-                error={error}
               />
             </div>
           </div>

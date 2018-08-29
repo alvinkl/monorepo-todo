@@ -1,4 +1,4 @@
-import { fetch as f, interfaces as I } from '@organizations/datasource/todo';
+import { interfaces as I } from '@organizations/datasource/todo';
 import { action, computed, configure, observable } from 'mobx';
 
 import { TodoListItemStore } from './TodoListItemStore';
@@ -9,10 +9,7 @@ configure({
 
 export class TodoContainerStore {
   @observable
-  items: I.TodoListItemStore[] = [];
-
-  @observable
-  fetchedItems: I.TodoListItemStore[] = [];
+  items: TodoListItemStore[] = [];
 
   @observable
   error: Error | null = null;
@@ -45,32 +42,31 @@ export class TodoContainerStore {
   }
 
   @action
+  setAllItems(items: TodoListItemStore[]) {
+    this.items = items;
+  }
+
+  @action
   saveItems() {
     this.service.saveTodos(this.items);
   }
 
   @action
-  loadItems() {
-    this.items = this.service
-      .getTodos()
-      .map(json => TodoListItemStore.init(json));
-  }
-
-  async fetchTodos() {
-    const { error, data } = await f.fetchTodo();
-    if (error) {
-      this.setError(error);
-      return;
-    }
-    const dt = data!.map(
-      ({ title, id, completed }) => new TodoListItemStore(title, id, completed)
-    );
-    this.setFetchedItems(dt);
+  updateItem(id: number) {
+    this.items
+      .filter(todo => todo.id === id)
+      .map(async d => (d.isCompleted = !d.isCompleted));
   }
 
   @action
-  setFetchedItems(item: I.ITodoListItemStore[]) {
-    this.fetchedItems.push(...item);
+  async loadItems() {
+    const data = await this.service.getTodos();
+
+    const items = data.map(({ title, id, completed }) =>
+      TodoListItemStore.init(title, id, completed)
+    );
+
+    this.setAllItems(items);
   }
 
   @action
