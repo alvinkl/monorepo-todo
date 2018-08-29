@@ -17,7 +17,8 @@
     "bootstrap": "lerna bootstrap",
     "lint": "tslint --project tsconfig.json --config tslint.yaml --exclude '**/*.d.ts'",
     "test": "better-npm-run lint-test",
-    "build:babel": "better-npm-run build:packages",
+    "build:core": "better-npm-run build:core",
+    "build:features": "better-npm-run build:features",
     "build:webpack": "better-npm-run build:packages-webpack",
     "clean": "better-npm-run clean:packages",
     "watch": "better-npm-run build:packages-webpack --watch",
@@ -26,23 +27,23 @@
     "commit": "git-cz"
   },
   "betterScripts": {
-    "build:packages": {
-      "env": {
-        "BABEL_ENV": "bundles"
-      },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- babel src -d lib --config-file ../../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
-    },
     "build:packages-webpack": {
       "env": {
         "BABEL_ENV": "bundles"
       },
       "command": "lerna run --parallel --ignore @organizations/main-app build"
     },
-    "build:packages-webpack-old": {
+    "build:core": {
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../../webpack.base.config.js"
+      "command": "lerna run --parallel --scope @organizations/ui --scope @organizations/datasource build"
+    },
+    "build:features": {
+      "env": {
+        "BABEL_ENV": "bundles"
+      },
+      "command": "lerna run --parallel --ignore @organizations/ui --ignore @organizations/datasource --ignore @organizations/main-app build"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
@@ -60,7 +61,7 @@
       "env": {
         "NODE_ENV": "test"
       },
-      "command": "yarn clean && yarn build:webpack && yarn lint && tsc --noEmit && jest --no-cache"
+      "command": "yarn clean && yarn build:core && yarn build:features && yarn lint && tsc --noEmit && jest --no-cache"
     }
   },
   "husky": {

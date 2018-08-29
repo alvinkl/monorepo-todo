@@ -1,3 +1,3 @@
-import Memo from '../src/containers/MemoPage';
+import MemoPage from '../src/containers/MemoPage';
 
-export default Memo;
+export default MemoPage;

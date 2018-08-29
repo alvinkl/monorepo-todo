@@ -1,11 +1,12 @@
 import { default as T } from 'prop-types';
 import { Component, default as React } from 'react';
 
-export const pageWithStyles = WrappedComponent => {
+const pageWithStyles = WrappedComponent => {
   interface IPageWithStylesProps {
     css: any[];
   }
 
+  // @ts-ignore
   class PWS extends Component<IPageWithStylesProps, {}> {
     static displayName;
 
@@ -20,23 +21,26 @@ export const pageWithStyles = WrappedComponent => {
     getChildContext() {
       const { css } = this.props;
 
-      const insertCss =
-        typeof window === 'undefined'
-          ? (...styles) => {
-            styles.forEach(style => {
-                const cssText = style._getCss();
-                if (!~css.indexOf(cssText)) {
-                  css.push(cssText);
-                }
-              });
-          }
-          : (...styles) => {
-            const removeCss = styles.map(x => x._insertCss());
+      let insertCss;
 
-            return () => {
-                removeCss.forEach(f => f());
-              };
+      if (typeof window === 'undefined') {
+        insertCss = (...styles) => {
+          styles.forEach(style => {
+            const cssText = style._getCss();
+            if (!~css.indexOf(cssText)) {
+              css.push(cssText);
+            }
+          });
+        };
+      } else {
+        insertCss = (...styles) => {
+          const removeCss = styles.map(x => x._insertCss());
+
+          return () => {
+            removeCss.forEach(f => f());
           };
+        };
+      }
 
       return { insertCss };
     }
@@ -64,4 +68,6 @@ export const pageWithStyles = WrappedComponent => {
   return PWS;
 };
 
+export { pageWithStyles as pws };
+// @ts-ignore
 export default pageWithStyles;
