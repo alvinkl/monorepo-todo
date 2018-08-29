@@ -1,0 +1,34 @@
+{
+    "name": "@organizations/memo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "types": "lib/index.d.ts",
+    "scripts": {
+        "build": "webpack",
+        "watch": "webpack --watch"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "author": "",
+    "license": "ISC",
+    "peerDependencies": {
+        "@organizations/datasource": "^1.0.0",
+        "@organizations/ui": "^1.0.0",
+        "mobx": "^5.0.3",
+        "mobx-react": "^5.2.5",
+        "isomorphic-style-loader": "^4.0.0",
+        "react": "^16.4.2",
+        "react-dom": "^16.4.2"
+    },
+    "devDependencies": {
+        "@organizations/datasource": "^1.0.0",
+        "@organizations/ui": "^1.0.0",
+        "mobx": "^5.0.3",
+        "mobx-react": "^5.2.5",
+        "isomorphic-style-loader": "^4.0.0",
+        "react": "^16.4.2",
+        "react-dom": "^16.4.2"
+    }
+}

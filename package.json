@@ -10,50 +10,88 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/core/*",
+    "packages/features/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "lint": "tslint --project tsconfig.json --config tslint.yaml --exclude '**/*.d.ts'",
-    "test": "better-npm-run lint-test",
-    "build:babel": "better-npm-run build:packages",
-    "build:webpack": "better-npm-run build:packages-webpack",
+    "bootstrap": "better-npm-run bootstrap",
     "clean": "better-npm-run clean:packages",
-    "watch": "better-npm-run build:packages-webpack --watch",
+
+    "build:core": "better-npm-run build:core",
+    "build:features": "better-npm-run build:features",
     "build:declaration": "better-npm-run build:typescript-declaration",
-    "dev": "better-npm-run clean:packages && better-npm-run watch:development",
+
+    "watch:core": "better-npm-run watch:core",
+    "watch:features": "better-npm-run watch:features",
+    
+    "dev": "better-npm-run clean:packages && better-npm-run dev",
+    "dev:main-app": "better-npm-run dev:main-app",
+    "dev:storybook": "better-npm-run dev:storybook",
+    
+    "lint": "better-npm-run lint",
+    "test": "better-npm-run lint-test",
     "commit": "git-cz"
   },
   "betterScripts": {
-    "build:packages": {
-      "env": {
-        "BABEL_ENV": "bundles"
-      },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- babel src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
+    "clean:packages": {
+      "command": "rm -rf @types packages/*/*/lib packages/*/*/.next"
     },
-    "build:packages-webpack": {
+    "bootstrap": {
+      "command": "lerna bootstrap"
+    },
+    "build:core": {
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../webpack.base.config.js"
+      "command": "lerna run --parallel --scope @organizations/ui --scope @organizations/datasource build"
+    },
+    "build:features": {
+      "env": {
+        "BABEL_ENV": "bundles"
+      },
+      "command": "lerna run --parallel --ignore @organizations/ui --ignore @organizations/datasource --ignore @organizations/main-app build"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
     },
-    "clean:packages": {
-      "command": "rm -rf packages/*/lib packages/*/.next"
-    },
-    "watch:development": {
+    "watch:core": {
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently  \"yarn watch\" \"lerna run --scope @organizations/main-app dev\" \"lerna run --scope @organizations/ui story\" "
+      "command": "lerna run --parallel --scope @organizations/ui --scope @organizations/datasource watch"
+    },
+    "watch:features": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "lerna run --parallel --ignore @organizations/main-app --ignore @organizations/ui --ignore @organizations/datasource watch"
+    },
+    "dev": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "concurrently  \"yarn watch:core\" \"yarn watch:features\" \"yarn dev:main-app\" \"yarn dev:storybook\" "
+    },
+    "dev:main-app": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "lerna run --scope @organizations/main-app dev"
+    },
+    "dev:storybook": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "lerna run --scope @organizations/ui story"
+    },
+    "lint": {
+      "command": "tslint --project tsconfig.json --config tslint.yaml --exclude '**/*.d.ts'"
     },
     "lint-test": {
       "env": {
         "NODE_ENV": "test"
       },
-      "command": "yarn clean && yarn build:webpack && yarn lint && tsc --noEmit && jest --no-cache"
+      "command": "yarn clean && yarn build:core && yarn build:features && yarn lint && tsc --noEmit && jest --no-cache"
     }
   },
   "husky": {
