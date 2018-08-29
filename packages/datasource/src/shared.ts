@@ -1,1 +1,7 @@
-export { default } from './shared/index';
+import * as services from './shared/services';
+
+export { services };
+
+export default {
+  services,
+};

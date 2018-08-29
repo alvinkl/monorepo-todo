@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require.resolve('./lib/shared.build.js');
+module.exports = require('./lib/shared.build.js');
