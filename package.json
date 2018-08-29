@@ -96,7 +96,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "better-npm-run lint-test",
+      "pre-push": "better-npm-run lint-test",
       "post-merge": "better-npm-run clean:packages"
     }
   },

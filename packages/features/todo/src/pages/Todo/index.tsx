@@ -2,8 +2,8 @@ import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
+import { services as S } from '@organizations/datasource/todo';
 import { Text, TextBox } from '@organizations/ui';
-import { LocalTodoService } from './services/LocalTodoService';
 import { TodoContainerStore } from './store/TodoContainerStore';
 import { TodoListItemStore } from './store/TodoListItemStore';
 
@@ -26,7 +26,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
 
   @observable
   store =
-    this.props.store || new TodoContainerStore(new LocalTodoService('todos'));
+    this.props.store || new TodoContainerStore(new S.LocalTodoService('todos'));
 
   componentDidMount() {
     this.store.loadItems();

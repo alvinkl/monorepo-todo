@@ -1,7 +1,7 @@
-import ITodoService from '../interfaces/ITodoService';
+import { interfaces as I } from '@organizations/datasource/todo';
 import { TodoContainerStore } from './TodoContainerStore';
 
-class MockService implements ITodoService {
+class MockService implements I.ITodoService {
   addTodo() {}
   getTodos() {
     return [];

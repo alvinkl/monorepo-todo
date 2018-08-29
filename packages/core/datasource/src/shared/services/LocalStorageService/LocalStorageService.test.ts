@@ -3,7 +3,7 @@ import LocalStorageService from './LocalStorageService';
 describe('[Services] LocalStorageService', () => {
   beforeEach(() => {
     const mockStorage = () => {
-      let items = {};
+      const items = {};
 
       return {
         setItem: (key: string, objStrfy) => {
@@ -21,9 +21,9 @@ describe('[Services] LocalStorageService', () => {
   const storageService = new LocalStorageService(key);
   const testObj = [
     {
-      testing: true,
-      number: 1,
       array: [1, 2, 3],
+      number: 1,
+      testing: true,
     },
   ];
   it('should add item to localStorage', () => {

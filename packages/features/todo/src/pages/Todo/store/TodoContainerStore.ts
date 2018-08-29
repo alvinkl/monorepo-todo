@@ -1,7 +1,6 @@
-import { fetch as f } from '@organizations/datasource/todo';
+import { fetch as f, interfaces as I } from '@organizations/datasource/todo';
 import { action, computed, configure, observable } from 'mobx';
 
-import ITodoService from '../interfaces/ITodoService';
 import { TodoListItemStore } from './TodoListItemStore';
 
 configure({
@@ -10,17 +9,17 @@ configure({
 
 export class TodoContainerStore {
   @observable
-  items: TodoListItemStore[] = [];
+  items: I.TodoListItemStore[] = [];
 
   @observable
-  fetchedItems: TodoListItemStore[] = [];
+  fetchedItems: I.TodoListItemStore[] = [];
 
   @observable
   error: Error | null = null;
 
-  private service: ITodoService;
+  private service: I.ITodoService;
 
-  constructor(service: ITodoService) {
+  constructor(service: I.ITodoService) {
     this.service = service;
   }
 
@@ -52,7 +51,9 @@ export class TodoContainerStore {
 
   @action
   loadItems() {
-    this.items = this.service.getTodos();
+    this.items = this.service
+      .getTodos()
+      .map(json => TodoListItemStore.init(json));
   }
 
   async fetchTodos() {
@@ -68,7 +69,7 @@ export class TodoContainerStore {
   }
 
   @action
-  setFetchedItems(item: TodoListItemStore[]) {
+  setFetchedItems(item: I.ITodoListItemStore[]) {
     this.fetchedItems.push(...item);
   }
 

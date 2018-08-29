@@ -1,1 +1,1 @@
-export default {};
+export { default as LocalTodoService } from './LocalTodoService';
