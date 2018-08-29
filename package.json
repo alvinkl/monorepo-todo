@@ -10,7 +10,8 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/core/*",
+    "packages/features/*"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -29,7 +30,7 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- babel src -d lib --config-file ../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
+      "command": "lerna exec --parallel --ignore @organizations/main-app -- babel src -d lib --config-file ../../../.babelrc --extensions \".ts,.tsx,.js,.jsx\""
     },
     "build:packages-webpack": {
       "env": {
@@ -41,13 +42,13 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../webpack.base.config.js"
+      "command": "lerna exec --parallel --ignore @organizations/main-app -- webpack --config ../../../webpack.base.config.js"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
     },
     "clean:packages": {
-      "command": "rm -rf @types packages/*/lib packages/*/.next"
+      "command": "rm -rf @types packages/*/*/lib packages/*/*/.next"
     },
     "watch:development": {
       "env": {

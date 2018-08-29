@@ -6,7 +6,9 @@ export const pageWithStyles = WrappedComponent => {
     css: any[];
   }
 
-  class PageWithStyles extends Component<IPageWithStylesProps, {}> {
+  class PWS extends Component<IPageWithStylesProps, {}> {
+    static displayName;
+
     static defaultProps = {
       css: [],
     };
@@ -57,9 +59,9 @@ export const pageWithStyles = WrappedComponent => {
   const displayName =
     WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
-  PageWithStyles.displayName = `PageWithStyles(${displayName})`;
+  PWS.displayName = `PageWithStyles(${displayName})`;
 
-  return PageWithStyles;
+  return PWS;
 };
 
 export default pageWithStyles;

@@ -1,5 +1,5 @@
 const path = require('path');
-const webpackBaseConfig = require('../../webpack.base.config.js');
+const webpackBaseConfig = require('../../../webpack.base.config.js');
 
 const entryConfig = {
   shared: path.resolve('.', 'src', 'shared.ts'),

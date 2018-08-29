@@ -1,4 +1,5 @@
 import { default as Document, Head, Main, NextScript } from 'next/document';
+import * as React from 'react';
 
 // import "../static/css/style.css";
 
