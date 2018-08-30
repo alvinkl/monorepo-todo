@@ -19,6 +19,9 @@ interface IPropsStore {
 
 @observer
 export class TodoContainer extends React.Component<IPropsStore, {}> {
+  static getInitialProps({ req }) {
+    return { req };
+  }
   @observable
   activeScreen: ScreenType = ScreenType.Active;
 
