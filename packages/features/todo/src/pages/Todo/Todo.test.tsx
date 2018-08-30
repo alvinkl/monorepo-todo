@@ -1,19 +1,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { interfaces as I } from '@organizations/datasource/todo';
+import { mocks } from '@organizations/datasource/todo';
 import { TodoContainerStore } from './store/TodoContainerStore';
 
 import TodoListView from './components/TodoListView';
-import { default as Todo } from './index';
+import Todo from './Todo';
 
-class MockService implements I.ITodoService {
-  addTodo() {}
-  getTodos() {
-    return [];
-  }
-  saveTodos() {}
-}
+const {
+  services: { MockOnlineTodoService },
+} = mocks;
 
 describe('Todo Page Component', () => {
   window.fetch = jest.fn().mockImplementation(() =>
@@ -25,10 +21,7 @@ describe('Todo Page Component', () => {
   let store: TodoContainerStore;
 
   beforeEach(() => {
-    store = new TodoContainerStore(new MockService());
-    store.addItem('Testing Todo 1');
-    store.addItem('Testing Todo 2');
-    store.addItem('Testing Todo 3');
+    store = new TodoContainerStore(new MockOnlineTodoService());
   });
 
   it('Renders Todo', () => {
