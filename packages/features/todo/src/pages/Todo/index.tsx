@@ -13,7 +13,7 @@ export default class extends React.Component<
 > {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    const store = new TodoContainerStore(new S.OnlineTodoService('Todo'));
+    const store = new TodoContainerStore(new S.OnlineTodoService());
 
     return { isServer, store };
   }

@@ -4,7 +4,7 @@ import { action, computed, configure, observable } from 'mobx';
 import { TodoListItemStore } from './TodoListItemStore';
 
 configure({
-  enforceActions: true,
+  enforceActions: 'observed',
 });
 
 export class TodoContainerStore {
@@ -59,14 +59,14 @@ export class TodoContainerStore {
   }
 
   @action
-  async loadItems() {
-    const data = await this.service.getTodos();
+  loadItems() {
+    this.service.getTodos().subscribe(data => {
+      const items = data.map(({ title, id, completed }) =>
+        TodoListItemStore.init(title, id, completed)
+      );
 
-    const items = data.map(({ title, id, completed }) =>
-      TodoListItemStore.init(title, id, completed)
-    );
-
-    this.setAllItems(items);
+      this.setAllItems(items);
+    });
   }
 
   @action

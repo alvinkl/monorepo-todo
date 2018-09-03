@@ -1,22 +1,22 @@
-import { default as to } from '../../utils/asyncAwait';
+import { Rxios } from 'rxios';
+import { Observable } from 'rxjs';
 import { ITodoService } from '../interfaces';
 import { ITodoListItem } from '../models';
 
-export class OnlineTodoService implements ITodoService {
-  addTodo(todo: ITodoListItem) {
-    throw new Error(JSON.stringify(todo));
+export class OnlineRXTodoService implements ITodoService {
+  private http: Rxios;
+
+  constructor() {
+    this.http = new Rxios();
   }
 
-  async getTodos(): Promise<ITodoListItem[]> {
-    const { error, response } = await to(
-      fetch('https://jsonplaceholder.typicode.com/todos')
+  addTodo() {}
+
+  getTodos(): Observable<ITodoListItem[]> {
+    return this.http.get<ITodoListItem[]>(
+      'https://jsonplaceholder.typicode.com/todos'
     );
-    if (error) return [];
-
-    const data: ITodoListItem[] = await response!.json();
-
-    return data;
   }
 }
 
-export default OnlineTodoService;
+export default OnlineRXTodoService;

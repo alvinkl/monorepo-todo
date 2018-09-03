@@ -13,6 +13,17 @@
     },
     "author": "",
     "license": "ISC",
-    "peerDependencies": {},
-    "devDependencies": {}
+    "peerDependencies": {
+        "axios": "^0.18.0",
+        "rxios": "^1.1.2",
+        "rxjs": "^6.3.1",
+        "rxjs-compat": "^6.3.1"
+    },
+    "devDependencies": {
+        "axios": "^0.18.0",
+        "rxios": "^1.1.2",
+        "rxjs": "^6.3.1",
+        "rxjs-compat": "^6.3.1"
+    },
+    "dependencies": {}
 }

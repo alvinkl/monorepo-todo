@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ITodoService } from '../../interfaces';
 import { ITodoListItem } from '../../models';
 
@@ -5,8 +6,9 @@ export class MockOnlineTodoService implements ITodoService {
   addTodo(todo: ITodoListItem) {
     throw new Error(JSON.stringify(todo));
   }
-  async getTodos(): Promise<ITodoListItem[]> {
-    return [
+
+  getTodos(): Observable<ITodoListItem[]> {
+    return Observable.create([
       {
         title: 'testing',
         id: 1,
@@ -31,7 +33,7 @@ export class MockOnlineTodoService implements ITodoService {
         completed: true,
         userId: 0,
       },
-    ];
+    ]);
   }
 }
 

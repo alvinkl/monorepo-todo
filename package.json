@@ -16,18 +16,14 @@
   "scripts": {
     "bootstrap": "better-npm-run bootstrap",
     "clean": "better-npm-run clean:packages",
-
     "build:core": "better-npm-run build:core",
     "build:features": "better-npm-run build:features",
     "build:declaration": "better-npm-run build:typescript-declaration",
-
     "watch:core": "better-npm-run watch:core",
     "watch:features": "better-npm-run watch:features",
-    
     "dev": "better-npm-run clean:packages && better-npm-run dev",
     "dev:main-app": "better-npm-run dev:main-app",
     "dev:storybook": "better-npm-run dev:storybook",
-    
     "lint": "better-npm-run lint",
     "test": "better-npm-run lint-test",
     "commit": "git-cz"
@@ -158,7 +154,7 @@
     "husky": "^1.0.0-rc.13",
     "isomorphic-style-loader": "^4.0.0",
     "jest": "^23.5.0",
-    "lerna": "3.0.6",
+    "lerna": "^3.2.1",
     "next": "^6.1.1",
     "peer-deps-externals-webpack-plugin": "^1.0.4",
     "prettier": "^1.14.2",
