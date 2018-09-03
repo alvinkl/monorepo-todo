@@ -1,7 +1,7 @@
 import { default as T } from 'prop-types';
 import { Component, default as React } from 'react';
 
-const pageWithStyles = WrappedComponent => {
+const pageWithStyles = (WrappedComponent) => {
   interface IPageWithStylesProps {
     css: any[];
   }
@@ -33,7 +33,7 @@ const pageWithStyles = WrappedComponent => {
 
       if (typeof window === 'undefined') {
         insertCss = (...styles) => {
-          styles.forEach(style => {
+          styles.forEach((style) => {
             const cssText = style._getCss();
             if (!~css.indexOf(cssText)) {
               css.push(cssText);
@@ -42,10 +42,10 @@ const pageWithStyles = WrappedComponent => {
         };
       } else {
         insertCss = (...styles) => {
-          const removeCss = styles.map(x => x._insertCss());
+          const removeCss = styles.map((x) => x._insertCss());
 
           return () => {
-            removeCss.forEach(f => f());
+            removeCss.forEach((f) => f());
           };
         };
       }
