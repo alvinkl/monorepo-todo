@@ -13,26 +13,27 @@
     "access": "public"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "rxios": "^1.1.2",
-    "rxjs-compat": "^6.3.1",
-    "rxjs": "^6.3.1",
     "@organizations/datasource": "^1.0.0",
     "@organizations/memo": "^1.0.0",
     "@organizations/todo": "^1.0.0",
     "@organizations/ui": "^1.0.0",
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-typescript": "^1.1.0",
+    "axios": "^0.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "emotion": "^9.2.6",
     "isomorphic-style-loader": "^4.0.0",
-    "mobx-react": "^5.2.5",
     "mobx": "^5.0.3",
-    "next": "^6.1.1",
+    "mobx-react": "^5.2.5",
+    "next": "6.1.0",
+    "next-plugin-transpile-modules": "^0.1.1",
+    "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-emotion": "^9.2.6",
-    "react": "^16.4.2"
+    "rxios": "^1.1.2",
+    "rxjs": "^6.3.1",
+    "rxjs-compat": "^6.3.1"
   },
   "devDependencies": {
     "glob-promise": "^3.4.0"

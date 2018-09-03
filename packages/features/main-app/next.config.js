@@ -1,5 +1,5 @@
 const withTypescript = require('@zeit/next-typescript');
-// const withCSS = require('@zeit/next-css');
+const withTM = require('next-plugin-transpile-modules');
 const glob = require('glob-promise');
 const { join } = require('path');
 
@@ -30,7 +30,12 @@ const webpackDevMiddlewareConfig = config => {
   return config;
 };
 
-module.exports = withTypescript({
-  webpack: webpackConfig,
-  webpackDevMiddleware: webpackDevMiddlewareConfig,
-});
+module.exports = withTypescript(
+  withTM({
+    webpack: webpackConfig,
+    webpackDevMiddleware: webpackDevMiddlewareConfig,
+    // we can use transpileModules after next
+    //  js update it's babel version to > 7.0.0-beta.42
+    // transpileModules: ['@organizations'],
+  })
+);

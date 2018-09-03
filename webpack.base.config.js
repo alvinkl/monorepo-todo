@@ -9,6 +9,8 @@ const PACKAGE_NAME = pkgPath[pkgPath.length - 1];
 
 console.log('=== BUILDING FOR ', PACKAGE_NAME, ' ===');
 
+const dev = process.env.NODE_ENV === 'development';
+
 const commonConfig = {
   entry: path.resolve('./', 'src', 'index.ts'),
 
@@ -47,20 +49,28 @@ const commonConfig = {
     ],
   },
 
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
-    }),
-    new PeerDepsExternalsPlugin(),
-    new UglifyJSPlugin({
-      parallel: true,
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
-    }),
-  ],
+  plugins: (() => {
+    let plugins = [
+      new webpack.LoaderOptionsPlugin({
+        debug: true,
+      }),
+      new PeerDepsExternalsPlugin(),
+    ];
+
+    if (!dev)
+      plugins.push(
+        new UglifyJSPlugin({
+          parallel: true,
+          uglifyOptions: {
+            output: {
+              comments: false,
+            },
+          },
+        })
+      );
+
+    return plugins;
+  })(),
 
   output: {
     path: path.resolve('./', 'lib'),
