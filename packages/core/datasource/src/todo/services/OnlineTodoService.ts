@@ -1,5 +1,4 @@
-import { fetchTodo } from '../fetch';
-import { IUpdateParam, updateTodo } from '../fetch/updateTodo';
+import { default as to } from '../../utils/asyncAwait';
 import { ITodoService } from '../interfaces';
 import { ITodoListItem } from '../models';
 
@@ -8,16 +7,13 @@ export class OnlineTodoService implements ITodoService {
     throw new Error(JSON.stringify(todo));
   }
 
-  async saveTodo(todo: IUpdateParam) {
-    const { error, data } = await updateTodo(todo);
-
-    if (error) return null;
-
-    return data;
-  }
   async getTodos(): Promise<ITodoListItem[]> {
-    const { data, error } = await fetchTodo();
+    const { error, response } = await to(
+      fetch('https://jsonplaceholder.typicode.com/todos')
+    );
     if (error) return [];
+
+    const data: ITodoListItem[] = await response!.json();
 
     return data;
   }

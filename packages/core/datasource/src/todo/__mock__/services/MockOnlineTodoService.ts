@@ -1,14 +1,7 @@
-import { IUpdateParam } from '../../fetch/updateTodo';
 import { ITodoService } from '../../interfaces';
 import { ITodoListItem } from '../../models';
 
 export class MockOnlineTodoService implements ITodoService {
-  saveTodo: (
-    todo: IUpdateParam
-  ) => {
-    return;
-  };
-
   addTodo(todo: ITodoListItem) {
     throw new Error(JSON.stringify(todo));
   }
