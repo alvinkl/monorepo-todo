@@ -14,8 +14,12 @@ export class TodoListItemStore {
   }
 
   @action
-  static init(json: any): TodoListItemStore {
-    return new TodoListItemStore(json.text, json.id, json.isCompleted);
+  static init(
+    text: string,
+    id: number,
+    isCompleted: boolean
+  ): TodoListItemStore {
+    return new TodoListItemStore(text, id, isCompleted);
   }
   @observable
   id: number;
@@ -34,11 +38,6 @@ export class TodoListItemStore {
     this.id = id;
     this.text = text;
     this.isCompleted = isCompleted;
-  }
-
-  @action
-  setCompleteness(completed: boolean) {
-    this.isCompleted = completed;
   }
 }
 

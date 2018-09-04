@@ -39,3 +39,5 @@ rules:
     jsx-no-multiline-js: false
     no-bitwise: false
     ter-arrow-parens: false
+    object-shorthand-properties-first: false
+    object-literal-sort-keys: false

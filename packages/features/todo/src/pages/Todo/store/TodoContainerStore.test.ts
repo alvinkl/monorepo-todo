@@ -1,7 +1,7 @@
-import ITodoService from '../interfaces/ITodoService';
+import { interfaces as I } from '@organizations/datasource/todo';
 import { TodoContainerStore } from './TodoContainerStore';
 
-class MockService implements ITodoService {
+class MockService implements I.ITodoService {
   addTodo() {}
   getTodos() {
     return [];
@@ -32,7 +32,9 @@ describe('[Todo] [Store] TodoContainerStore', () => {
     store.addItem('Testing Todo');
 
     expect(store.activeItems).toHaveLength(1);
-    store.items[0].setCompleteness(true);
+    const item = store.items[0];
+
+    store.updateItem(item.id);
 
     expect(store.activeItems).toHaveLength(0);
     expect(store.completedItems).toHaveLength(1);

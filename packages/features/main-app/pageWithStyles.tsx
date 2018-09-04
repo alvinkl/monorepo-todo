@@ -18,6 +18,14 @@ const pageWithStyles = WrappedComponent => {
       insertCss: T.func,
     };
 
+    static getInitialProps(param) {
+      if (typeof WrappedComponent.getInitialProps === 'function') {
+        WrappedComponent.getInitialProps(param);
+      }
+
+      return {};
+    }
+
     getChildContext() {
       const { css } = this.props;
 

@@ -13,7 +13,11 @@ export const TodoListView = inject('todos')(
     <ul className={style.list}>
       {!error &&
         todos.map((d: TodoListItemStore) => (
-          <TodoListItem {...d} key={d.id} onChange={onChange.bind(null, d)} />
+          <TodoListItem
+            {...d}
+            key={d.id}
+            onChange={onChange.bind(null, d.id)}
+          />
         ))}
 
       {error && <h1>ERROR LAH</h1>}

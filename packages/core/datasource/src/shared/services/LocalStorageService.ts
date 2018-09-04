@@ -1,4 +1,6 @@
-export class LocalStorageService {
+import { ILocalStorage } from '../interfaces';
+
+export class LocalStorageService implements ILocalStorage {
   private key: string;
 
   constructor(key) {
