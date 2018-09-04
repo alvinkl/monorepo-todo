@@ -23,14 +23,14 @@ export class TodoContainerStore {
   @computed
   get activeItems() {
     return this.items
-      .filter(object => !object.isCompleted)
+      .filter((object) => !object.isCompleted)
       .sort((_, secondObject) => secondObject.id);
   }
 
   @computed
   get completedItems() {
     return this.items
-      .filter(object => object.isCompleted)
+      .filter((object) => object.isCompleted)
       .sort((_, obj) => obj.id);
   }
 
@@ -54,13 +54,13 @@ export class TodoContainerStore {
   @action
   updateItem(id: number) {
     this.items
-      .filter(todo => todo.id === id)
-      .map(async d => (d.isCompleted = !d.isCompleted));
+      .filter((todo) => todo.id === id)
+      .map(async (d) => (d.isCompleted = !d.isCompleted));
   }
 
   @action
   loadItems() {
-    this.service.getTodos().subscribe(data => {
+    this.service.getTodos().subscribe((data) => {
       const items = data.map(({ title, id, completed }) =>
         TodoListItemStore.init(title, id, completed)
       );

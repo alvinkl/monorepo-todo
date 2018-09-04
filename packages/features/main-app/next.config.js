@@ -1,6 +1,5 @@
 const withTypescript = require('@zeit/next-typescript');
-// const withCSS = require('@zeit/next-css');
-const glob = require('glob-promise');
+// const withTM = require('next-plugin-transpile-modules');
 const { join } = require('path');
 
 const webpackConfig = function(config, { dev }) {
@@ -26,7 +25,7 @@ const webpackConfig = function(config, { dev }) {
   return config;
 };
 
-const webpackDevMiddlewareConfig = config => {
+const webpackDevMiddlewareConfig = (config) => {
   return config;
 };
 

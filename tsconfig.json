@@ -16,7 +16,6 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "strictNullChecks": true,
-        // "strict": true,
         "preserveSymlinks": true,
 
         "sourceMap": false,
@@ -38,10 +37,6 @@
         ],
 
         "rootDir": ".",
-        // "baseUrl": "./packages",
-        // "paths": {
-        //     "@organizations/*": ["./*/src"]
-        // },
 
         "outDir": "@types"
     },
