@@ -15,13 +15,13 @@
   ],
   "scripts": {
     "bootstrap": "better-npm-run bootstrap",
-    "clean": "better-npm-run clean:packages",
+    "clean": "rm -rf @types packages/*/*/lib packages/*/*/.next",
     "build:core": "better-npm-run build:core",
     "build:features": "better-npm-run build:features",
     "build:declaration": "better-npm-run build:typescript-declaration",
+    "watch": "better-npm-run watch",
     "watch:core": "better-npm-run watch:core",
     "watch:features": "better-npm-run watch:features",
-    "dev": "better-npm-run clean:packages && better-npm-run dev",
     "dev:main-app": "better-npm-run dev:main-app",
     "dev:storybook": "better-npm-run dev:storybook",
     "lint": "better-npm-run lint",
@@ -50,6 +50,12 @@
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
     },
+    "watch": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "command": "lerna run --parallel --ignore @organizations/main-app watch"
+    },
     "watch:core": {
       "env": {
         "NODE_ENV": "development"
@@ -61,12 +67,6 @@
         "NODE_ENV": "development"
       },
       "command": "lerna run --parallel --ignore @organizations/main-app --ignore @organizations/ui --ignore @organizations/datasource watch"
-    },
-    "dev": {
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "command": "concurrently  \"yarn watch:core\" \"yarn watch:features\" \"yarn dev:main-app\" \"yarn dev:storybook\" "
     },
     "dev:main-app": {
       "env": {
