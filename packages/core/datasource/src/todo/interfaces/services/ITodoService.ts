@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ITodoListItem } from '../models';
+import { ITodoListItem } from '../models/ITodoListItem';
 
 export default interface ITodoService {
   addTodo(todo: ITodoListItem);

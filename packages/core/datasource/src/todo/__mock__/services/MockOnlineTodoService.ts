@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-import { ITodoService } from '../../interfaces';
-import { ITodoListItem } from '../../models';
+import { ITodoListItem, ITodoService } from '../../interfaces';
 
 export class MockOnlineTodoService implements ITodoService {
   addTodo(todo: ITodoListItem) {

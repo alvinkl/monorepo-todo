@@ -1,7 +1,6 @@
 import { Rxios } from 'rxios';
 import { Observable } from 'rxjs';
-import { ITodoService } from '../interfaces';
-import { ITodoListItem } from '../models';
+import { ITodoListItem, ITodoService } from '../interfaces';
 
 export class OnlineRXTodoService implements ITodoService {
   private http: Rxios;
