@@ -41,3 +41,4 @@ rules:
     ter-arrow-parens: false
     object-shorthand-properties-first: false
     object-literal-sort-keys: false
+    jsx-alignment: false

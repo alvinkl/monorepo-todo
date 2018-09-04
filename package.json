@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "bootstrap": "better-npm-run bootstrap",
-    "clean": "better-npm-run clean:packages",
+    "clean": "rm -rf @types packages/*/*/lib packages/*/*/.next",
     "build:core": "better-npm-run build:core",
     "build:features": "better-npm-run build:features",
     "build:declaration": "better-npm-run build:typescript-declaration",
@@ -39,13 +39,13 @@
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna run --parallel --scope @organizations/ui --scope @organizations/datasource build"
+      "command": "lerna run --parallel --stream --scope @organizations/ui --scope @organizations/datasource build"
     },
     "build:features": {
       "env": {
         "BABEL_ENV": "bundles"
       },
-      "command": "lerna run --parallel --ignore @organizations/ui --ignore @organizations/datasource --ignore @organizations/main-app build"
+      "command": "lerna run --parallel --stream --ignore @organizations/ui --ignore @organizations/datasource --ignore @organizations/main-app build"
     },
     "build:typescript-declaration": {
       "command": "tsc --emitDeclarationOnly"
@@ -54,25 +54,25 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "lerna run --parallel --scope @organizations/ui --scope @organizations/datasource watch"
+      "command": "lerna run --parallel --stream --scope @organizations/ui --scope @organizations/datasource watch"
     },
     "watch:features": {
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "lerna run --parallel --ignore @organizations/main-app --ignore @organizations/ui --ignore @organizations/datasource watch"
+      "command": "lerna run --parallel --stream --ignore @organizations/main-app --ignore @organizations/ui --ignore @organizations/datasource watch"
     },
     "dev": {
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "concurrently  \"yarn watch:core\" \"yarn watch:features\" \"yarn dev:main-app\" \"yarn dev:storybook\" "
+      "command": "concurrently \"yarn dev:main-app\" \"yarn dev:storybook\" "
     },
     "dev:main-app": {
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "lerna run --scope @organizations/main-app dev"
+      "command": "lerna run --stream --scope @organizations/main-app dev"
     },
     "dev:storybook": {
       "env": {
@@ -144,10 +144,8 @@
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "awesome-typescript-loader": "^4",
-    "babel-plugin-module-resolver": "^3.1.1",
     "better-npm-run": "^0.1.1",
     "concurrently": "^3.6.1",
-    "css-loader": "^1.0.0",
     "enzyme": "^3.4.4",
     "enzyme-adapter-react-16": "^1.2.0",
     "git-cz": "1.7.1",
@@ -155,7 +153,6 @@
     "isomorphic-style-loader": "^4.0.0",
     "jest": "^23.5.0",
     "lerna": "^3.2.1",
-    "next": "^6.1.1",
     "peer-deps-externals-webpack-plugin": "^1.0.4",
     "prettier": "^1.14.2",
     "react-test-renderer": "^16.4.2",
