@@ -9,67 +9,85 @@ const PACKAGE_NAME = pkgPath[pkgPath.length - 1];
 
 console.log('=== BUILDING FOR ', PACKAGE_NAME, ' ===');
 
-const commonConfig = {
-  entry: path.resolve('./', 'src', 'index.ts'),
+const dev = process.env.NODE_ENV === 'development';
 
-  externals: /^\@alvin\/./i,
+const webpackConfig = (customConfig) => {
+  const plugins = (() => {
+    let plug = [
+      new webpack.LoaderOptionsPlugin({
+        debug: !!dev,
+      }),
+      new PeerDepsExternalsPlugin(),
+    ];
 
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    symlinks: true,
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.tsx?$/,
-        exclude: [/node_modules/, /\.story.*/],
-        use: {
-          loader: 'awesome-typescript-loader',
-        },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'isomorphic-style-loader',
-          {
-            loader: 'typings-for-css-modules-loader',
-            options: {
-              modules: true,
-              namedExport: true,
-              // sourceMap: !!dev,
-              // minimize: !dev,
-              // localIdentName: '[name]-[local]-[hash:base64:5]',
+    if (!dev)
+      plug.push(
+        new UglifyJSPlugin({
+          parallel: true,
+          uglifyOptions: {
+            output: {
+              comments: false,
             },
           },
-        ],
-      },
-    ],
-  },
+        })
+      );
 
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
-    }),
-    new PeerDepsExternalsPlugin(),
-    new UglifyJSPlugin({
-      parallel: true,
-      uglifyOptions: {
-        output: {
-          comments: false,
+    return plug;
+  })();
+
+  const defaultConfig = {
+    entry: path.resolve('./', 'src', 'index.ts'),
+
+    externals: /^\@alvin\/./i,
+
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      symlinks: true,
+    },
+
+    module: {
+      loaders: [
+        {
+          test: /\.tsx?$/,
+          exclude: [/node_modules/, /\.story.*/],
+          use: {
+            loader: 'awesome-typescript-loader',
+          },
         },
-      },
-    }),
-  ],
+        {
+          test: /\.css$/,
+          use: [
+            'isomorphic-style-loader',
+            {
+              loader: 'typings-for-css-modules-loader',
+              options: {
+                modules: true,
+                namedExport: true,
+                // sourceMap: !!dev,
+                // minimize: !dev,
+                // localIdentName: '[name]-[local]-[hash:base64:5]',
+              },
+            },
+          ],
+        },
+      ],
+    },
 
-  output: {
-    path: path.resolve('./', 'lib'),
-    filename: 'package.build.js',
-    library: '',
-    libraryTarget: 'commonjs',
-  },
+    plugins,
 
-  stats: 'minimal',
+    output: {
+      path: path.resolve('./', 'lib'),
+      filename: 'package.build.js',
+      library: '',
+      libraryTarget: 'commonjs',
+    },
+
+    stats: 'minimal',
+  };
+
+  if (typeof customConfig === 'function') return customConfig(defaultConfig);
+
+  return defaultConfig;
 };
 
-module.exports = commonConfig;
+module.exports = webpackConfig;
