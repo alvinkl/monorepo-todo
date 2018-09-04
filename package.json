@@ -78,7 +78,7 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "command": "lerna run --scope --stream @organizations/ui story"
+      "command": "lerna run --scope @organizations/ui story"
     },
     "lint": {
       "command": "tslint --project tsconfig.json --config tslint.yaml --exclude '**/*.d.ts'"
