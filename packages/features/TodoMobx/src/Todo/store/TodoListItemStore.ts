@@ -5,14 +5,6 @@ configure({
 });
 
 export class TodoListItemStore {
-  get current(): any {
-    return {
-      id: this.id,
-      isCompleted: this.isCompleted,
-      text: this.text,
-    };
-  }
-
   @action
   static init(
     text: string,
@@ -38,6 +30,14 @@ export class TodoListItemStore {
     this.id = id;
     this.text = text;
     this.isCompleted = isCompleted;
+  }
+
+  get current(): any {
+    return {
+      id: this.id,
+      isCompleted: this.isCompleted,
+      text: this.text,
+    };
   }
 }
 

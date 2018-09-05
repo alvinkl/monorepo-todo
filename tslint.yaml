@@ -42,3 +42,4 @@ rules:
     object-shorthand-properties-first: false
     object-literal-sort-keys: false
     jsx-alignment: false
+    no-shadowed-variable: false

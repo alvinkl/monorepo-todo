@@ -1,5 +1,5 @@
 {
-  "name": "@organizations/todo",
+  "name": "@organizations/todo-mobx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

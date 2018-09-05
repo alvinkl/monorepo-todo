@@ -1,19 +1,11 @@
-import { interfaces as I } from '@organizations/datasource/todo';
+import { services as S } from '@organizations/datasource/todo';
 import { TodoContainerStore } from './TodoContainerStore';
-
-class MockService implements I.ITodoService {
-  addTodo() {}
-  getTodos() {
-    return [];
-  }
-  saveTodos() {}
-}
 
 describe('[Todo] [Store] TodoContainerStore', () => {
   let store: TodoContainerStore;
 
   beforeEach(() => {
-    store = new TodoContainerStore(new MockService());
+    store = new TodoContainerStore(new S.MockTodoService());
   });
 
   it('Should Add Item to items', () => {

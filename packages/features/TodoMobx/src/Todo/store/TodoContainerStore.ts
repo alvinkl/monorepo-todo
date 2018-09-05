@@ -7,6 +7,8 @@ configure({
   enforceActions: 'observed',
 });
 
+let store;
+
 export class TodoContainerStore {
   @observable
   items: TodoListItemStore[] = [];
@@ -16,8 +18,10 @@ export class TodoContainerStore {
 
   private service: I.ITodoService;
 
-  constructor(service: I.ITodoService) {
+  constructor(service: I.ITodoService, initialData?: TodoListItemStore[]) {
     this.service = service;
+
+    this.items = initialData || [];
   }
 
   @computed
@@ -36,9 +40,10 @@ export class TodoContainerStore {
 
   @action
   addItem(text: string) {
-    const item = new TodoListItemStore(text);
-    this.service.addTodo(item);
-    this.items.push(item);
+    this.service.add(text).subscribe(({ Id, Content, Checked }) => {
+      const newList = TodoListItemStore.init(Content, Id, Checked);
+      this.items.push(newList);
+    });
   }
 
   @action
@@ -47,22 +52,23 @@ export class TodoContainerStore {
   }
 
   @action
-  saveItems() {
-    this.service.saveTodos(this.items);
-  }
-
-  @action
   updateItem(id: number) {
-    this.items
-      .filter((todo) => todo.id === id)
-      .map(async (d) => (d.isCompleted = !d.isCompleted));
+    this.items.filter((todo) => todo.id === id).map(({ id, isCompleted }) => {
+      this.service
+        .update(id, !isCompleted)
+        .subscribe(({ Id, Checked }) =>
+          this.items
+            .filter(({ id }) => id === Id)
+            .map((d) => (d.isCompleted = Checked))
+        );
+    });
   }
 
   @action
   loadItems() {
-    this.service.getTodos().subscribe((data) => {
-      const items = data.map(({ title, id, completed }) =>
-        TodoListItemStore.init(title, id, completed)
+    this.service.get().subscribe((data) => {
+      const items = data.map(({ Content, Id, Checked }) =>
+        TodoListItemStore.init(Content, Id, Checked)
       );
 
       this.setAllItems(items);
@@ -75,4 +81,10 @@ export class TodoContainerStore {
   }
 }
 
-export default TodoContainerStore;
+export const initStore = (service, isServer: boolean, initialData?) => {
+  if (isServer) return new TodoContainerStore(service);
+
+  if (!store) store = new TodoContainerStore(service, initialData);
+
+  return store;
+};

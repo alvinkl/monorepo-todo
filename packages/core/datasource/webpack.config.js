@@ -3,7 +3,7 @@ const webpackConfig = require('../../../webpack.base.config.js');
 
 module.exports = webpackConfig((config) => {
   const entryConfig = {
-    shared: path.resolve('.', 'src', 'shared.ts'),
+    utils: path.resolve('.', 'src', 'utils.ts'),
     todo: path.resolve('.', 'src', 'todo.ts'),
   };
 

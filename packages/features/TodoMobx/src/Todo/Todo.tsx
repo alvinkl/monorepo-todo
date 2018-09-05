@@ -1,12 +1,11 @@
 import { action, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 
-import { services as S } from '@organizations/datasource/todo';
 import { Text, TextBox } from '@organizations/ui';
-import { TodoContainerStore } from './store/TodoContainerStore';
 
 import TodoListView from './components/TodoListView';
+import { TodoContainerStore } from './store/TodoContainerStore';
 
 enum ScreenType {
   Active,
@@ -17,20 +16,17 @@ interface IPropsStore {
   store?: TodoContainerStore;
 }
 
+@inject('store')
 @observer
 export class TodoContainer extends React.Component<IPropsStore, {}> {
   @observable
   activeScreen: ScreenType = ScreenType.Active;
 
   @observable
-  store =
-    this.props.store ||
-    new TodoContainerStore(new S.OnlineTodoService('todos'));
+  store = this.props.store;
 
   componentDidMount() {
-    this.store.loadItems();
-
-    window.onbeforeunload = () => this.beforeUnload();
+    this.store!.loadItems();
   }
 
   @action
@@ -39,19 +35,15 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
   };
 
   onChangeComplete = (id: number) => {
-    this.store.updateItem(id);
+    this.store!.updateItem(id);
   };
 
   onSubmitNewTodo = (text: string) => {
-    this.store.addItem(text);
+    this.store!.addItem(text);
   };
 
-  beforeUnload() {
-    this.store.saveItems();
-  }
-
   render() {
-    const { activeItems, completedItems } = this.store;
+    const { activeItems, completedItems } = this.store!;
 
     return (
       <div className="container td-container">

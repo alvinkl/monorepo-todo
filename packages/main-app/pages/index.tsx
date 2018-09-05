@@ -1,4 +1,4 @@
+import { Todo } from '@organizations/todo-mobx';
 import pageWithStyles from '../pageWithStyles';
-import TodoPage from '../src/containers/TodoPage';
 
-export default pageWithStyles(TodoPage);
+export default pageWithStyles(Todo);

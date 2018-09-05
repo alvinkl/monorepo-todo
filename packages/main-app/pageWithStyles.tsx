@@ -20,7 +20,7 @@ const pageWithStyles = (WrappedComponent) => {
 
     static getInitialProps(param) {
       if (typeof WrappedComponent.getInitialProps === 'function') {
-        WrappedComponent.getInitialProps(param);
+        return WrappedComponent.getInitialProps(param);
       }
 
       return {};
