@@ -6,9 +6,11 @@ export class MockTodoService implements ITodoService {
 
   todos: ITodoModel[] = [];
 
-  // constructor() {
-  //   this.todos = [1, 2, 3, 3, 4].map(() => this.getTodoModel('content'));
-  // }
+  constructor() {
+    this.todos = [1, 2, 3, 4, 5].map((d) =>
+      this.getTodoModel(`content ${d}`, d)
+    );
+  }
 
   get(): Observable<ITodoModel[]> {
     return Observable.create((observer) => {
@@ -18,7 +20,7 @@ export class MockTodoService implements ITodoService {
 
   add(content: string): Observable<ITodoModel> {
     return Observable.create((observer) => {
-      const todo = this.getTodoModel(content);
+      const todo = this.getTodoModel(content, Math.random());
 
       this.todos.push(todo);
       observer.next(todo);
@@ -51,10 +53,8 @@ export class MockTodoService implements ITodoService {
     });
   }
 
-  getTodoModel(content: string): ITodoModel {
-    const lastTodo = this.todos[this.todos.length - 1];
-    const lastTodoId =
-      lastTodo === null || lastTodo === undefined ? 1 : lastTodo.Id + 1;
+  getTodoModel(content: string, id: number): ITodoModel {
+    const lastTodoId = id;
     const result: ITodoModel = {
       Id: lastTodoId,
       Checked: false,
