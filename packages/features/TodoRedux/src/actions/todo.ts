@@ -1,4 +1,3 @@
-import { interfaces as I, services as S } from '@organizations/datasource/todo';
 import { ITodoListItem } from '../interfaces/ITodoListItem';
 
 export const FETCHING_TODO = 'FETCHING_TODO';
@@ -8,11 +7,10 @@ export const UPDATED_TODO = 'UPDATED_TODO';
 export const ADDING_TODO = 'ADDING_TODO';
 export const ADDED_TODO = 'ADDED_TODO';
 
-let service: I.ITodoService;
-initService();
-
-export const fetchTodo = () => (dispatch) => {
+export const fetchTodo = () => (dispatch, getState) => {
   dispatch({ type: FETCHING_TODO });
+
+  const { todo: service } = getState().services;
 
   service.get().subscribe((data) => {
     const nd = data.map(
@@ -35,6 +33,7 @@ export const updateTodo = (id) => (dispatch, getState) => {
   dispatch({ type: UPDATING_TODO });
   const {
     todo: { todos, completedTodos, activeTodos },
+    services: { todo: service },
   } = getState();
 
   let index = -1;
@@ -65,10 +64,12 @@ export const updateTodo = (id) => (dispatch, getState) => {
   }
 };
 
-export const addTodo = (text: string) => (dispatch) => {
+export const addTodo = (text: string) => (dispatch, getState) => {
   dispatch({
     type: ADDING_TODO,
   });
+
+  const { todo: service } = getState().services;
 
   service.add(text).subscribe(({ Id, Content, Checked }) => {
     const convTodo: ITodoListItem = {
@@ -83,11 +84,3 @@ export const addTodo = (text: string) => (dispatch) => {
     });
   });
 };
-
-function initService() {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!service) service = new S.TodoService();
-  }
-
-  return service;
-}

@@ -2,4 +2,4 @@
 
 export NODE_ENV=development
 
-npx concurrently "yarn dev:main-app" "yarn dev:storybook"
+npx concurrently "yarn dev:storybook" "yarn dummy" "yarn dev:main-app" 

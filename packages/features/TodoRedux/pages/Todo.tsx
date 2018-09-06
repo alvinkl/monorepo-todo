@@ -4,7 +4,19 @@ import Todo from '../src/Todo';
 
 import { default as configureStore } from '../src/store';
 
-const store = configureStore({}, {}, []);
+import { services as S } from '@organizations/datasource/todo';
+
+function initService() {
+  if (process.env.NODE_ENV !== 'production') return new S.TodoService();
+
+  return new S.TodoService();
+}
+
+const services = {
+  todo: initService(),
+};
+
+const store = configureStore({}, { services }, []);
 
 export default class extends React.Component<
   {
