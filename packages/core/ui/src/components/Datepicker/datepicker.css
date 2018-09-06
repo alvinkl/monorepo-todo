@@ -1,0 +1,130 @@
+.DayPicker-wrapper {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.DayPicker {
+  border-radius: 4px;
+  box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.03);
+  border: solid 0.5px #e5e8e8;
+}
+
+.DayPicker-Day--today {
+  font-weight: 500 !important;
+  color: rgba(1, 84, 138, 0.9) !important;
+}
+
+.singleDatepicker__select__header {
+  border-radius: 4px;
+  background-color: rgba(236, 240, 241, 0.8);
+  padding: 10px;
+  display: inline-block;
+}
+
+.singleDatepicker__select__header__text {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline;
+}
+
+.singleDatepicker__select__header__icon {
+  width: 7px;
+  height: 4px;
+  display: inline;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.singleDatepicker__select__body {
+  padding: 0;
+  list-style: none;
+  background-color: #ffffff;
+  box-shadow: 1px 2px 6px 0 rgba(189, 195, 199, 0.6);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(76, 86, 92, 0.8);
+  position: absolute;
+  max-height: 175px;
+  border-radius: 4px;
+  overflow-y: auto;
+  z-index: 3;
+}
+
+.singleDatepicker__select__body__content {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+}
+
+.singleDatepicker__select__body__content:hover {
+  background-color: #c9eefb;
+}
+
+.singleDatepicker__selectionYear {
+  margin-left: 12px;
+}
+
+.DayPicker-Weekdays {
+  border-top: solid 0.8px rgba(127, 140, 141, 0.12);
+  margin-top: 14px;
+}
+
+.DayPicker-WeekdaysRow {
+  text-transform: uppercase;
+}
+
+.DayPicker-NavBar {
+  display: none;
+}
+
+.DayPicker-WeekdaysRow > div:first-of-type > abbr {
+  color: #fa797a;
+}
+
+.DayPicker-Week > div:first-of-type {
+  color: #fa797a;
+}
+
+.DayPicker-Day--disabled {
+  color: #dce0e0 !important;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  border-radius: 3px;
+  background-color: rgba(1, 84, 138, 0.9) !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+}
+
+.rangeDatepicker__datepicker .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  background-color: rgba(63, 137, 187, 0.2) !important;
+  color: #484848 !important;
+  font-weight: 300 !important;
+  border-radius: 0px !important;
+}
+
+.rangeDatepicker__navbarContainer {
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+}
+
+.rangeDatepicker__navbarContainer__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.DayPicker-Caption > div {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  color: #484848 !important;
+  text-transform: uppercase;
+}
+
+.DayPicker-Months {
+  padding: 8px;
+}

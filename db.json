@@ -74,14 +74,14 @@
       "id": 13,
       "Id": 13,
       "Content": "json-server13",
-      "Checked": false,
+      "Checked": true,
       "Deleted": false
     },
     {
       "Content": "asdfa",
       "Id": 1536202310000,
       "id": 1536202310000,
-      "Checked": false,
+      "Checked": true,
       "Deleted": false
     },
     {

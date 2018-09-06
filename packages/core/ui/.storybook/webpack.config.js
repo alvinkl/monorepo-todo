@@ -4,7 +4,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules = defaultConfig.module.rules.filter(
-    d => String(d.test) !== String(/\.css$/)
+    (d) => String(d.test) !== String(/\.css$/)
   );
 
   defaultConfig.module.rules.push({
@@ -12,16 +12,67 @@ module.exports = (baseConfig, env, defaultConfig) => {
     loader: require.resolve('awesome-typescript-loader'),
   });
 
+  // defaultConfig.module.rules.push({
+  //   test: /\.css$/,
+  //   oneOf: [
+  //     {
+  //       resourceQuery: /^\?raw$/,
+  //       use: [
+  //         'isomorphic-style-loader',
+  //         {
+  //           loader: 'typings-for-css-modules-loader',
+  //           options: {
+  //             modules: false,
+  //           },
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       use: [
+  //         'isomorphic-style-loader',
+  //         {
+  //           loader: 'typings-for-css-modules-loader',
+  //           options: {
+  //             modules: true,
+  //             namedExport: true,
+  //             // sourceMap: !!dev,
+  //             // minimize: !dev,
+  //             // localIdentName: '[name]-[local]-[hash:base64:5]',
+  //           },
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // });
   defaultConfig.module.rules.push({
     test: /\.css$/,
-    use: [
-      'style-loader',
+    oneOf: [
       {
-        loader: 'typings-for-css-modules-loader',
-        options: {
-          modules: true,
-          namedExport: true,
-        },
+        resourceQuery: /raw/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+            },
+          },
+        ],
+      },
+      {
+        use: [
+          'style-loader',
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: true,
+              // sourceMap: !!dev,
+              // minimize: !dev,
+              // localIdentName: '[name]-[local]-[hash:base64:5]',
+            },
+          },
+        ],
       },
     ],
   });

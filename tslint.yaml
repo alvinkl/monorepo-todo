@@ -43,3 +43,10 @@ rules:
     object-literal-sort-keys: false
     jsx-alignment: false
     no-shadowed-variable: false
+    max-line-length: false
+    no-increment-decrement: false
+    prefer-array-literal: false
+    no-unused-expression: false
+    align: false
+    no-var-requires: false
+

@@ -20,7 +20,7 @@ const webpackConfig = (customConfig) => {
       new PeerDepsExternalsPlugin(),
     ];
 
-    if (!dev)
+    if (!dev) {
       plug.push(
         new UglifyJSPlugin({
           parallel: true,
@@ -31,6 +31,9 @@ const webpackConfig = (customConfig) => {
           },
         })
       );
+
+      plug.push(new webpack.WatchIgnorePlugin([/css\.d\.ts$/]));
+    }
 
     return plug;
   })();
@@ -56,17 +59,33 @@ const webpackConfig = (customConfig) => {
         },
         {
           test: /\.css$/,
-          use: [
-            'isomorphic-style-loader',
+          oneOf: [
             {
-              loader: 'typings-for-css-modules-loader',
-              options: {
-                modules: true,
-                namedExport: true,
-                // sourceMap: !!dev,
-                // minimize: !dev,
-                // localIdentName: '[name]-[local]-[hash:base64:5]',
-              },
+              resourceQuery: /^\?raw$/,
+              use: [
+                'isomorphic-style-loader',
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: false,
+                  },
+                },
+              ],
+            },
+            {
+              use: [
+                'isomorphic-style-loader',
+                {
+                  loader: 'typings-for-css-modules-loader',
+                  options: {
+                    modules: true,
+                    namedExport: true,
+                    // sourceMap: !!dev,
+                    // minimize: !dev,
+                    // localIdentName: '[name]-[local]-[hash:base64:5]',
+                  },
+                },
+              ],
             },
           ],
         },

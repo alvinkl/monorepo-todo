@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Text, TextBox } from '@organizations/ui';
+import { Avatar, Text, TextBox } from '@organizations/ui';
 
 import TodoListView from './components/TodoListView';
 import { TodoContainerStore } from './store/TodoContainerStore';
@@ -47,6 +47,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
 
     return (
       <div className="container td-container">
+        <Avatar name={['John sdoe']} petite={false} status="ACTIVE" />
         <TextBox onSubmit={this.onSubmitNewTodo} />
         <Text />
 
