@@ -58,8 +58,8 @@ export const updateTodo = (id) => (dispatch, getState) => {
           ? [current[0], ...completedTodos]
           : completedTodos.filter((a) => a.id !== id),
         activeTodos: data.Checked
-          ? [current[0], ...activeTodos]
-          : activeTodos.filter((a) => a.id !== id),
+          ? activeTodos.filter((a) => a.id !== id)
+          : [current[0], ...activeTodos],
       });
     });
   }
@@ -86,7 +86,7 @@ export const addTodo = (text: string) => (dispatch) => {
 
 function initService() {
   if (process.env.NODE_ENV !== 'production') {
-    if (!service) service = new S.MockTodoService();
+    if (!service) service = new S.TodoService();
   }
 
   return service;

@@ -1,5 +1,5 @@
 import { interfaces as I } from '@organizations/datasource/todo';
-import { action, computed, configure, observable } from 'mobx';
+import { action, computed, configure, observable, runInAction } from 'mobx';
 
 import { TodoListItemStore } from './TodoListItemStore';
 
@@ -57,9 +57,11 @@ export class TodoContainerStore {
       this.service
         .update(id, !isCompleted)
         .subscribe(({ Id, Checked }) =>
-          this.items
-            .filter(({ id }) => id === Id)
-            .map((d) => (d.isCompleted = Checked))
+          runInAction(() =>
+            this.items
+              .filter(({ id }) => id === Id)
+              .map((d) => (d.isCompleted = Checked))
+          )
         );
     });
   }

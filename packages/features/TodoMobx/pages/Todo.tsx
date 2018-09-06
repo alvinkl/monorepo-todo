@@ -17,7 +17,7 @@ export default class extends React.Component<
 > {
   static async getInitialProps({ req }) {
     const isServer = !!req;
-    const store = initStore(new S.MockTodoService(), isServer);
+    const store = initStore(new S.TodoService(), isServer);
 
     await store.loadItems();
     const initialData = store.items;
@@ -31,7 +31,7 @@ export default class extends React.Component<
     super(props);
 
     this.store = initStore(
-      new S.MockTodoService(),
+      new S.TodoService(),
       props.isServer,
       props.initialData
     );
