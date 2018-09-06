@@ -1,0 +1,165 @@
+.dropdown {
+  position: relative;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  overflow: visible;
+  margin-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.dropdown select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 1.8px;
+  box-shadow: none;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  outline: none;
+  /* cursor: text; */
+  -webkit-transition: border 500ms ease-out;
+  -moz-transition: border 500ms ease-out;
+  -o-transition: border 500ms ease-out;
+  transition: border 500ms ease-out;
+  cursor: pointer;
+}
+
+.dropdown select option {
+  height: 64px;
+  font-size: 16px;
+}
+.listContainer {
+  border: 1px solid #ddd;
+  border-top: 0;
+  border-radius: 1.8px;
+  height: 120px;
+  overflow-y: scroll;
+}
+
+.row {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 1.8px;
+  box-shadow: none;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  outline: none;
+  /* cursor: text; */
+  -webkit-transition: border 500ms ease-out;
+  -moz-transition: border 500ms ease-out;
+  -o-transition: border 500ms ease-out;
+  transition: border 500ms ease-out;
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: #fafafa;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.dropdown input:focus {
+  border: 1px solid #00aeef;
+}
+
+.dropdown label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  font-size: 16px;
+  color: #bdc3c7;
+  transform-origin: 0 -650%;
+  -webkit-transition: transform 300ms ease;
+  transition: transform 300ms ease;
+  pointer-events: none;
+  margin-top: 0;
+}
+
+.formMessage {
+  font-size: 14px;
+  line-height: 1.0;
+  color: #bdc3c7;
+  margin-top: 0.7em;
+}
+
+.validation {
+  margin-top: 0;
+  color: #fa797a;
+  font-size: 14px;
+}
+
+.disabled {
+  position: absolute;
+  right: 0px;
+  top: 14px;
+  width: 40px;
+  text-align: right;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.disabled img {
+  width: 12px;
+  height: 12px;
+}
+
+.dropdown.error textarea,
+.dropdown.error input {
+  border: solid 1px #fa797a;
+}
+
+/* width */
+.dropdown ::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.dropdown ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.dropdown ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.dropdown ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.react-select__control {
+  background-color: red;
+}
+
+.dropdown--itemContainer {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.03);
+  background-color: #ffffff;
+  border: solid 0.5px #e5e8e8;
+  max-height: 261px;
+  overflow-y: auto;
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: absolute;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+.dropdown--img {
+  position: absolute;
+  width: 10px;
+  height: 6px;
+  top: 18.5px;
+  right: 16px;
+}
