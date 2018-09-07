@@ -16,7 +16,8 @@ import { initStore, TodoStore } from '../src/Todo/store/TodoStore';
   --------------------------------------------
   Challenge:
     - Build Todo Page that is pleasing to the eye ;)
-    - Todo page must use data (fetched) from service
+    - Todo page must use data (fetched or post) from service
+    - Todo page must be able to add new todo, check uncheck
     - Add Unit testing for page level component
   Hint:
     - You can use those awesome component with awesome documentation from @organizations/ui

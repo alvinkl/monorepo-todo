@@ -1,6 +1,6 @@
 export interface ITodoListItem {
   id: number;
-  text: string;
+  content: string;
   isCompleted: boolean;
 }
 

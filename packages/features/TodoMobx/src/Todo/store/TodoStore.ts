@@ -16,6 +16,7 @@ export class TodoStore {
     {
       id: 1,
       content: 'AWESOME CSS!!',
+      isCompleted: false,
     },
   ];
 
