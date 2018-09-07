@@ -1,1 +1,2 @@
-export { default as OnlineTodoService } from './OnlineTodoService';
+export { TodoService } from './TodoService';
+export { MockTodoService } from './MockTodoService';

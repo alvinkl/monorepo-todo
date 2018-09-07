@@ -1,2 +1,2 @@
-export { default as ITodoService } from './services/ITodoService';
-export { default as ITodoListItem } from './models/ITodoListItem';
+export { ITodoModel } from './models/ITodoModel';
+export { ITodoService } from './services/ITodoService';

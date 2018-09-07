@@ -1,0 +1,7 @@
+.list {
+  padding: 10px;
+  bottom: 1px solid #dee2e6;
+  border-top: none;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
