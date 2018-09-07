@@ -1,10 +1,10 @@
 import { Rxios } from 'rxios';
 import { Observable } from 'rxjs';
+import { TodoAPI } from '../../config/uri';
 import { ITodoModel, ITodoService } from '../interfaces/';
 
 export class TodoService implements ITodoService {
   private readonly http = new Rxios({
-    baseURL: 'http://localhost:8000',
     auth: {
       username: 'erdhee@icloud.com',
       password: '123456',
@@ -13,12 +13,12 @@ export class TodoService implements ITodoService {
   });
 
   get(): Observable<ITodoModel[]> {
-    return this.http.get<ITodoModel[]>('todo');
+    return this.http.get<ITodoModel[]>(TodoAPI.GET);
   }
 
   add(content: string): Observable<ITodoModel> {
     const id = Date.parse(new Date().toString());
-    return this.http.post<ITodoModel>('todo', {
+    return this.http.post<ITodoModel>(TodoAPI.ADD, {
       Content: content,
       Id: id,
       id,
@@ -28,13 +28,9 @@ export class TodoService implements ITodoService {
   }
 
   update(id: number, checked: boolean): Observable<ITodoModel> {
-    return this.http.patch<ITodoModel>(`todo/${String(id)}`, {
+    return this.http.patch<ITodoModel>(TodoAPI.UPDATE.replace('$id', `${id}`), {
       Checked: checked,
     });
-  }
-
-  remove(id: number): Observable<{}> {
-    return this.http.delete(`items/${String(id)}.json`);
   }
 }
 

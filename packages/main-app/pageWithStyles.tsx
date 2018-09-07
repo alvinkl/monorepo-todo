@@ -1,4 +1,4 @@
-import { default as T } from 'prop-types';
+import * as T from 'prop-types';
 import { Component, default as React } from 'react';
 
 const pageWithStyles = (WrappedComponent) => {

@@ -1,11 +1,9 @@
-import { action, observable } from 'mobx';
-import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Avatar, Text, TextBox } from '@organizations/ui';
+import { Text, TextBox } from '@organizations/ui';
 
+import ITodoListItem from '../interfaces/ITodoListItem';
 import TodoListView from './components/TodoListView';
-import { TodoContainerStore } from './store/TodoContainerStore';
 
 enum ScreenType {
   Active,
@@ -13,50 +11,55 @@ enum ScreenType {
 }
 
 interface IPropsStore {
-  store?: TodoContainerStore;
+  fetchTodo: () => void;
+  updateTodo: (id) => void;
+  addTodo: (text) => void;
+  todos: ITodoListItem[];
+  activeTodos: ITodoListItem[];
+  completedTodos: ITodoListItem[];
 }
 
-@inject('store')
-@observer
 export class TodoContainer extends React.Component<IPropsStore, {}> {
-  @observable
-  activeScreen: ScreenType = ScreenType.Active;
-
-  @observable
-  store = this.props.store;
+  state = {
+    activeScreen: ScreenType.Active,
+  };
 
   componentDidMount() {
-    this.store!.loadItems();
+    const { fetchTodo } = this.props;
+
+    fetchTodo();
   }
 
-  @action
-  setActiveScreen = (activeScreen: number) => {
-    this.activeScreen = activeScreen;
+  setActiveScreen(type) {
+    this.setState({ activeScreen: type });
+  }
+
+  onChangeComplete = (id) => {
+    const { updateTodo } = this.props;
+
+    updateTodo(id);
   };
 
-  onChangeComplete = (id: number) => {
-    this.store!.updateItem(id);
-  };
+  onSubmitNewTodo = (text) => {
+    const { addTodo } = this.props;
 
-  onSubmitNewTodo = (text: string) => {
-    this.store!.addItem(text);
+    addTodo(text);
   };
 
   render() {
-    const { activeItems, completedItems } = this.store!;
+    const { activeTodos, completedTodos } = this.props;
+    const { activeScreen } = this.state;
 
     return (
       <div className="container td-container">
-        <Avatar name={['John sdoe']} petite={false} status="ACTIVE" />
         <TextBox onSubmit={this.onSubmitNewTodo} />
         <Text />
-
         <div>
           <nav>
             <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a
                 className={
-                  this.activeScreen === ScreenType.Active
+                  activeScreen === ScreenType.Active
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
@@ -72,7 +75,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
               </a>
               <a
                 className={
-                  this.activeScreen === ScreenType.Completed
+                  activeScreen === ScreenType.Completed
                     ? 'nav-item nav-link active'
                     : 'nav-item nav-link'
                 }
@@ -91,7 +94,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
           <div className="tab-content" id="nav-tabContent">
             <div
               className={
-                this.activeScreen === ScreenType.Active
+                activeScreen === ScreenType.Active
                   ? 'tab-pane fade show active'
                   : 'tab-pane fade'
               }
@@ -101,13 +104,13 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
             >
               <TodoListView
                 key="active_list"
-                todos={this.store ? activeItems : []}
+                todos={activeTodos}
                 onChange={this.onChangeComplete}
               />
             </div>
             <div
               className={
-                this.activeScreen === ScreenType.Completed
+                activeScreen === ScreenType.Completed
                   ? 'tab-pane fade show active'
                   : 'tab-pane fade'
               }
@@ -117,7 +120,7 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
             >
               <TodoListView
                 key="complete_list"
-                todos={this.store ? completedItems : []}
+                todos={completedTodos}
                 onChange={this.onChangeComplete}
               />
             </div>
@@ -128,4 +131,18 @@ export class TodoContainer extends React.Component<IPropsStore, {}> {
   }
 }
 
-export default TodoContainer;
+import { connect } from 'react-redux';
+import { addTodo, fetchTodo, updateTodo } from '../actions/todo';
+
+const mapStateToProps = ({ todo }) => ({ ...todo });
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchTodo: () => dispatch(fetchTodo()),
+  updateTodo: (e) => dispatch(updateTodo(e)),
+  addTodo: (e) => dispatch(addTodo(e)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoContainer);

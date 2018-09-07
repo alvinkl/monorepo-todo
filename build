@@ -4,6 +4,4 @@ export NODE_ENV=development
 
 yarn clean
 
-yarn build:core
-
 yarn watch
