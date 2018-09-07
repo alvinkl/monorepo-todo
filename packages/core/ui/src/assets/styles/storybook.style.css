@@ -1,0 +1,11 @@
+#notes-usage {
+  margin-top: 8px !important;
+}
+
+.language-js {
+  margin-top: 4px !important;
+}
+
+table[class^='css-glamorous-table--'] {
+  margin-top: 16px;
+}

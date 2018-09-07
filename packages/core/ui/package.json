@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "story": "start-storybook -p 6006 -c .storybook -s ./src/assets/styles",
+    "story": "start-storybook -p 6006 -c .storybook -s ./src/assets/",
     "build": "webpack",
     "watch": "webpack --watch"
   },
@@ -21,6 +21,7 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-info": "^3.4.10",
     "@storybook/addon-knobs": "^3.4.10",
     "@storybook/react": "^3.4.10",
