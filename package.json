@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "bootstrap": "better-npm-run bootstrap",
-    "clean": "rm -rf @types packages/*/*/lib packages/*/*/.next packages/*/*/node_modules",
+    "clean": "rm -rf @types packages/*/*/lib packages/*/*/.next packages/*/*/node_modules && find . -name \"*.css.d.ts\" -type f -delete",
     "build:core": "better-npm-run build:core",
     "build:features": "better-npm-run build:features",
     "build:declaration": "better-npm-run build:typescript-declaration",
