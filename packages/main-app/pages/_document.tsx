@@ -1,4 +1,5 @@
 import { default as Document, Head, Main, NextScript } from 'next/document';
+import { default as Link } from 'next/link';
 import * as React from 'react';
 
 // import "../static/css/style.css";
@@ -20,12 +21,13 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <nav className="navbar navbar-dark bg-dark">
-            <a href="/" className="navbar-brand">
-              Todo
-            </a>
-            <a href="/memo" className="navbar-brand">
-              Memo
-            </a>
+            <Link href="/mobx">
+              <a className="navbar-brand">Mobx</a>
+            </Link>
+
+            <Link href="/redux">
+              <a className="navbar-brand">Redux</a>
+            </Link>
           </nav>
 
           <Main />
