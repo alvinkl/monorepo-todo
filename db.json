@@ -18,7 +18,7 @@
       "id": 5,
       "Id": 5,
       "Content": "json-server5",
-      "Checked": false,
+      "Checked": true,
       "Deleted": false
     },
     {
@@ -60,14 +60,14 @@
       "id": 11,
       "Id": 11,
       "Content": "json-server11",
-      "Checked": false,
+      "Checked": true,
       "Deleted": false
     },
     {
       "id": 12,
       "Id": 12,
       "Content": "json-server12",
-      "Checked": false,
+      "Checked": true,
       "Deleted": false
     },
     {
@@ -88,6 +88,20 @@
       "Content": "sadasd",
       "Id": 1536203766000,
       "id": 1536203766000,
+      "Checked": true,
+      "Deleted": false
+    },
+    {
+      "Content": "asdasdas",
+      "Id": 1536316124000,
+      "id": 1536316124000,
+      "Checked": false,
+      "Deleted": false
+    },
+    {
+      "Content": "asd",
+      "Id": 1536316733000,
+      "id": 1536316733000,
       "Checked": true,
       "Deleted": false
     }
